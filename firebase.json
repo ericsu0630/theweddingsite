@@ -4,7 +4,8 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "build/web",
+    "site": "the-wedding-site-24367",
+    "public": "web",
     "ignore": [
       "firebase.json",
       "**/.*",

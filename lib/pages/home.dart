@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 import 'package:tsu_and_angel/widgets/rsvp_form.dart';
 
@@ -55,8 +56,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pageBody(),
+    return WillPopScope(
+      onWillPop: () async => true,
+      child: Scaffold(
+        body: pageBody(),
+      ),
     );
   }
 
@@ -80,6 +84,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   Widget splashScreen() {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double ratio = width / height;
+    double pcScreenRatio = 4 / 3;
     return Container(
       child: Stack(
         children: <Widget>[
@@ -90,7 +98,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
               child: Image.asset(
-                'assets/images/picture_3.jpg',
+                (ratio > pcScreenRatio)
+                    ? 'assets/images/picture_1.JPG'
+                    : 'assets/images/picture_3.JPG',
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -101,45 +111,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FadeTransition(
-                    opacity: _titleAnimation,
-                    child: Text(
-                      'Tsu-Shiuan & Angel',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontFamily: 'DancingScript',
-                        fontSize: 72.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(5.0, 5.0),
-                            blurRadius: 5.0,
-                            color: Colors.black54,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   SizedBox(height: 32.0),
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
                       'Thursday, 14th October 2021',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontFamily: 'Courgette',
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(5.0, 5.0),
-                            blurRadius: 5.0,
-                            color: Colors.black54,
-                          ),
-                        ],
-                      ),
+                      style: MyFonts.weddingDateText,
                     ),
                   ),
                   SizedBox(height: 32.0),
@@ -158,19 +136,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           children: [
                             Text(
                               'RSVP',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                letterSpacing: 2.0,
-                                fontFamily: 'Courgette',
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: Offset(5.0, 5.0),
-                                    blurRadius: 5.0,
-                                    color: Colors.black54,
-                                  ),
-                                ],
-                              ),
+                              style: MyFonts.rsvpButtonText,
                             ),
                             Icon(
                               Icons.keyboard_arrow_down_rounded,

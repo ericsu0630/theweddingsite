@@ -46,13 +46,16 @@ class _NavBarState extends State<NavBar> {
             Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
             break;
           case 1:
-            Navigator.pushNamed(context, '/venue');
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/venue', (route) => false);
             break;
           case 2:
-            Navigator.pushNamed(context, '/accommodation');
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/accommodation', (route) => false);
             break;
           case 3:
-            Navigator.pushNamed(context, '/program');
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/program', (route) => false);
             break;
         }
       },
@@ -73,8 +76,8 @@ class _NavBarState extends State<NavBar> {
           style: TextStyle(
             fontSize: 18,
             color: Palette.primary,
-            fontFamily: 'Courgette',
-            fontWeight: (selected == position) ? FontWeight.bold : null,
+            fontFamily: 'DancingScript',
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

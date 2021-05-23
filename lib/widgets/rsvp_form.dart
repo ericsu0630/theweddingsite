@@ -10,12 +10,10 @@ class RsvpForm extends StatefulWidget {
 class _RsvpFormState extends State<RsvpForm> {
   GlobalKey _key = GlobalKey<FormState>();
   TextEditingController diet = TextEditingController();
-  TextEditingController friendName = TextEditingController();
-  TextEditingController friendDiet = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController name = TextEditingController();
   String attending = '';
-  String plusOne = '';
   String dietChoice = '';
-  String friendChoice = '';
   FocusNode focusNode = FocusNode();
 
   @override
@@ -32,8 +30,8 @@ class _RsvpFormState extends State<RsvpForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hi %Name%. Will you be attending?',
-              style: MyFonts.formText,
+              'Will you be attending?',
+              style: MyFonts.formQuestionText,
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -55,7 +53,7 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
                 Text(
                   'Yes',
-                  style: MyFonts.inputText,
+                  style: MyFonts.formInputText,
                 ),
                 SizedBox(width: 32.0),
                 IconButton(
@@ -75,7 +73,7 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
                 Text(
                   'No',
-                  style: MyFonts.inputText,
+                  style: MyFonts.formInputText,
                 ),
               ],
             ),
@@ -94,7 +92,7 @@ class _RsvpFormState extends State<RsvpForm> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Reply',
-                        style: MyFonts.buttonText,
+                        style: MyFonts.replyButtonText,
                       ),
                     ),
                   ),
@@ -111,7 +109,7 @@ class _RsvpFormState extends State<RsvpForm> {
           children: <Widget>[
             Text(
               'Great! Do you have any dietary preferences?',
-              style: MyFonts.formText,
+              style: MyFonts.formQuestionText,
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -132,7 +130,7 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
                 Text(
                   'No',
-                  style: MyFonts.inputText,
+                  style: MyFonts.formInputText,
                 ),
                 SizedBox(width: 32.0),
                 IconButton(
@@ -151,7 +149,7 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
                 Text(
                   'Vegetarian',
-                  style: MyFonts.inputText,
+                  style: MyFonts.formInputText,
                 ),
                 SizedBox(width: 32.0),
                 IconButton(
@@ -171,7 +169,7 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
                 Text(
                   'Other',
-                  style: MyFonts.inputText,
+                  style: MyFonts.formInputText,
                 ),
               ],
             ),
@@ -189,7 +187,7 @@ class _RsvpFormState extends State<RsvpForm> {
                   });
                 },
                 maxLines: 3,
-                style: MyFonts.inputText,
+                style: MyFonts.formInputText,
                 decoration: InputDecoration(
                   hintText: 'If other, please specify.',
                   hintStyle: TextStyle(color: Colors.grey),
@@ -199,50 +197,6 @@ class _RsvpFormState extends State<RsvpForm> {
                 ),
               ),
             ),
-            SizedBox(height: 32.0),
-            Text(
-              'Are you bringing a friend/date?',
-              style: MyFonts.formText,
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    (plusOne == 'Yes')
-                        ? Icons.check_box_rounded
-                        : Icons.check_box_outline_blank_rounded,
-                    color: Palette.primary,
-                  ),
-                  onPressed: () {
-                    setState(
-                      () {
-                        plusOne = 'Yes';
-                      },
-                    );
-                  },
-                ),
-                Text('Yes'),
-                SizedBox(width: 32.0),
-                IconButton(
-                  icon: Icon(
-                    (plusOne == 'No')
-                        ? Icons.check_box_rounded
-                        : Icons.check_box_outline_blank_rounded,
-                    color: Palette.primary,
-                  ),
-                  onPressed: () {
-                    setState(
-                      () {
-                        plusOne = 'No';
-                      },
-                    );
-                  },
-                ),
-                Text('No'),
-              ],
-            ),
-            showOrHideFriend(plusOne),
           ],
         );
       case 'No':
@@ -255,108 +209,6 @@ class _RsvpFormState extends State<RsvpForm> {
         );
       default:
         return Container();
-    }
-  }
-
-  Widget showOrHideFriend(String plusOne) {
-    if (plusOne == 'Yes') {
-      return Column(
-        children: <Widget>[
-          SizedBox(height: 32.0),
-          Text(
-            'Does he/she have any dietary preferences?',
-            style: MyFonts.formText,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  (friendChoice == 'No')
-                      ? Icons.check_box_rounded
-                      : Icons.check_box_outline_blank_rounded,
-                  color: Palette.primary,
-                ),
-                onPressed: () {
-                  setState(() {
-                    friendChoice = 'No';
-                  });
-                  focusNode.unfocus();
-                },
-              ),
-              Text(
-                'No',
-                style: MyFonts.inputText,
-              ),
-              SizedBox(width: 32.0),
-              IconButton(
-                icon: Icon(
-                  (friendChoice == 'Vegetarian')
-                      ? Icons.check_box_rounded
-                      : Icons.check_box_outline_blank_rounded,
-                  color: Palette.primary,
-                ),
-                onPressed: () {
-                  setState(() {
-                    friendChoice = 'Vegetarian';
-                  });
-                  focusNode.unfocus();
-                },
-              ),
-              Text(
-                'Vegetarian',
-                style: MyFonts.inputText,
-              ),
-              SizedBox(width: 32.0),
-              IconButton(
-                icon: Icon(
-                  (friendChoice == 'Other')
-                      ? Icons.check_box_rounded
-                      : Icons.check_box_outline_blank_rounded,
-                  color: Palette.primary,
-                ),
-                onPressed: () {
-                  setState(
-                    () {
-                      friendChoice = 'Other';
-                    },
-                  );
-                },
-              ),
-              Text(
-                'Other',
-                style: MyFonts.inputText,
-              ),
-            ],
-          ),
-          Container(
-            height: 40.0,
-            width: 256.0,
-            margin: const EdgeInsets.only(bottom: 8.0),
-            child: TextField(
-              cursorHeight: 24.0,
-              controller: friendDiet,
-              cursorColor: Palette.primary,
-              onTap: () {
-                setState(() {
-                  friendChoice = 'Other';
-                });
-              },
-              maxLines: 3,
-              style: MyFonts.inputText,
-              decoration: InputDecoration(
-                hintText: 'If other, please specify.',
-                hintStyle: TextStyle(color: Colors.grey),
-                isDense: true, // Added this
-                contentPadding: EdgeInsets.all(8),
-                focusColor: Palette.primary,
-              ),
-            ),
-          ),
-        ],
-      );
-    } else {
-      return Container();
     }
   }
 }

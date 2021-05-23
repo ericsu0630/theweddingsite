@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
-class VenuePage extends StatefulWidget {
+class AccommodationPage extends StatefulWidget {
   @override
-  _VenuePageState createState() => _VenuePageState();
+  _AccommodationPageState createState() => _AccommodationPageState();
 }
 
-class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
+class _AccommodationPageState extends State<AccommodationPage>
+    with TickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
   late AnimationController _splashAnimationController,
       _titleAnimationController;
@@ -105,7 +105,19 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
                     child: Text(
                       'Coming Soon...',
                       textAlign: TextAlign.center,
-                      style: MyFonts.comingSoonText,
+                      style: const TextStyle(
+                        fontFamily: 'DancingScript',
+                        fontSize: 72.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(5.0, 5.0),
+                            blurRadius: 5.0,
+                            color: Colors.black54,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/pages/accommodation.dart';
 import 'package:tsu_and_angel/pages/home.dart';
+import 'package:tsu_and_angel/pages/program.dart';
 import 'package:tsu_and_angel/pages/venue.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
@@ -18,8 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/venue': (context) => VenuePage(),
-        // '/accommodation': (context) => AccommodationPage(),
-        // '/programme': (context) => ProgramPage(),
+        '/accommodation': (context) => AccommodationPage(),
+        '/program': (context) => ProgramPage(),
       },
     );
   }
