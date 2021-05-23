@@ -90,7 +90,7 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
               child: Image.asset(
-                'assets/images/sample2.jpg',
+                'assets/images/picture_2.jpg',
                 fit: BoxFit.fitHeight,
               ),
             ),
