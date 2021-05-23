@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
               child: Image.asset(
-                'assets/images/picture_1.jpg',
+                'assets/images/picture_3.jpg',
                 fit: BoxFit.fitHeight,
               ),
             ),
