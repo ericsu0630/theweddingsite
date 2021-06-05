@@ -5,7 +5,7 @@
   },
   "hosting": {
     "site": "the-wedding-site-24367",
-    "public": "web",
+    "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",

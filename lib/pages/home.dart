@@ -106,8 +106,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           Positioned.fill(
+            bottom: 128.0,
             child: Align(
-              alignment: Alignment.center,
+              alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

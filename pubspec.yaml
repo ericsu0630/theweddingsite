@@ -17,9 +17,9 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/fonts/
+    - assets/myfonts/
 
   fonts:
     - family: DancingScript
       fonts:
-        - asset: assets/fonts/DancingScript.ttf
+        - asset: assets/myfonts/DancingScript.ttf
