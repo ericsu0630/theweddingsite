@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
 class AccommodationPage extends StatefulWidget {
@@ -88,9 +89,12 @@ class _AccommodationPageState extends State<AccommodationPage>
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
-              child: Image.asset(
-                'assets/images/belair_picture.jpeg',
-                fit: BoxFit.fitHeight,
+              child: Opacity(
+                opacity: MyOpacity.opacity, //tsu opacity value from 0 to 1
+                child: Image.asset(
+                  'assets/images/belair_picture.jpeg',
+                  fit: BoxFit.fitHeight,
+                ),
               ),
             ),
           ),

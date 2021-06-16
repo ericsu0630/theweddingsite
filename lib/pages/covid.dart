@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
@@ -88,9 +89,12 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
-              child: Image.asset(
-                'assets/images/belair_picture.jpeg',
-                fit: BoxFit.fitHeight,
+              child: Opacity(
+                opacity: MyOpacity.opacity,
+                child: Image.asset(
+                  'assets/images/belair_picture.jpeg',
+                  fit: BoxFit.fitHeight,
+                ),
               ),
             ),
           ),
