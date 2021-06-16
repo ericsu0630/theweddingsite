@@ -57,6 +57,10 @@ class _NavBarState extends State<NavBar> {
             Navigator.pushNamedAndRemoveUntil(
                 context, '/program', (route) => false);
             break;
+          case 3:
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/covid', (route) => false);
+            break;
         }
       },
       child: Container(

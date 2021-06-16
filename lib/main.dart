@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/pages/accommodation.dart';
+import 'package:tsu_and_angel/pages/covid.dart';
 import 'package:tsu_and_angel/pages/home.dart';
 import 'package:tsu_and_angel/pages/program.dart';
 import 'package:tsu_and_angel/pages/venue.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/venue': (context) => VenuePage(),
         '/accommodation': (context) => AccommodationPage(),
         '/program': (context) => ProgramPage(),
+        '/covid': (context) => CovidPage(),
       },
     );
   }
