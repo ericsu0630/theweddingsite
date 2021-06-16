@@ -70,7 +70,7 @@ class _ProgramPageState extends State<ProgramPage>
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 1,
+              selectedPosition: 3,
             ),
             splashScreen(),
           ],

@@ -70,7 +70,7 @@ class _AccommodationPageState extends State<AccommodationPage>
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 1,
+              selectedPosition: 2,
             ),
             splashScreen(),
           ],

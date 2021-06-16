@@ -70,7 +70,7 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 1,
+              selectedPosition: 4,
             ),
             splashScreen(),
           ],
