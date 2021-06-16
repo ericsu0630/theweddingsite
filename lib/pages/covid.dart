@@ -107,7 +107,7 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      'Coming Soon...',
+                      '',
                       textAlign: TextAlign.center,
                       style: MyFonts.comingSoonText,
                     ),

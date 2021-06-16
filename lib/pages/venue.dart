@@ -107,7 +107,7 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      'Coming Soon...',
+                      '',
                       textAlign: TextAlign.center,
                       style: MyFonts.comingSoonText,
                     ),

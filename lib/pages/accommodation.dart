@@ -107,7 +107,7 @@ class _AccommodationPageState extends State<AccommodationPage>
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      'Coming Soon...',
+                      '',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: 'DancingScript',
