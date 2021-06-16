@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 0,
+              selectedPosition: 1,
             ),
             splashScreen(),
             RsvpForm(),

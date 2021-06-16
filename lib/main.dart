@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'TsuAndAngel',
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
-        '/venue': (context) => VenuePage(),
+        '/': (context) => VenuePage(),
+        '/venue': (context) => HomePage(),
         '/accommodation': (context) => AccommodationPage(),
         '/program': (context) => ProgramPage(),
         '/covid': (context) => CovidPage(),

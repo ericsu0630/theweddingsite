@@ -70,7 +70,7 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 1,
+              selectedPosition: 0,
             ),
             splashScreen(),
           ],
