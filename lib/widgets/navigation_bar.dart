@@ -30,10 +30,10 @@ class _NavBarState extends State<NavBar> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          navBarItem('Venue', 0),
+          navBarItem('Welcome!', 0),
           navBarItem('RSVP', 1),
           navBarItem('Info', 2),
-          navBarItem('Program', 3),
+          // navBarItem('Program', 3),
           navBarItem('Covid Safety', 4),
         ],
       ),
@@ -78,16 +78,16 @@ class _NavBarState extends State<NavBar> {
               ),
             );
             break;
-          case 3:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => ProgramPage(),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 500),
-              ),
-            );
-            break;
+          // case 3:
+          //   Navigator.push(
+          //     context,
+          //     PageRouteBuilder(
+          //       pageBuilder: (_, __, ___) => ProgramPage(),
+          //       transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+          //       transitionDuration: Duration(milliseconds: 500),
+          //     ),
+          //   );
+          //   break;
           case 4:
             Navigator.push(
               context,
