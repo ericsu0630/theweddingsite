@@ -30,9 +30,9 @@ class _NavBarState extends State<NavBar> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          navBarItem('Our Wedding', 0),
+          navBarItem('RSVP', 0),
           navBarItem('Venue', 1),
-          navBarItem('Accommodation', 2),
+          navBarItem('Info', 2),
           navBarItem('Program', 3),
           navBarItem('Covid Safety', 4),
         ],
@@ -54,7 +54,7 @@ class _NavBarState extends State<NavBar> {
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => HomePage(),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 1000),
+                transitionDuration: Duration(milliseconds: 500),
               ),
             );
             break;
@@ -64,7 +64,7 @@ class _NavBarState extends State<NavBar> {
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => VenuePage(),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 1000),
+                transitionDuration: Duration(milliseconds: 500),
               ),
             );
             break;
@@ -74,7 +74,7 @@ class _NavBarState extends State<NavBar> {
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => AccommodationPage(),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 1000),
+                transitionDuration: Duration(milliseconds: 500),
               ),
             );
             break;
@@ -84,7 +84,7 @@ class _NavBarState extends State<NavBar> {
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => ProgramPage(),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 1000),
+                transitionDuration: Duration(milliseconds: 500),
               ),
             );
             break;
@@ -94,7 +94,7 @@ class _NavBarState extends State<NavBar> {
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => CovidPage(),
                 transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 1000),
+                transitionDuration: Duration(milliseconds: 500),
               ),
             );
             break;

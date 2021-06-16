@@ -5,5 +5,5 @@ class Palette {
 }
 
 class MyOpacity {
-  static double opacity = 0.2; //tsu opacity 0 to 1
+  static double opacity = 0.4; //tsu opacity 0 to 1
 }
