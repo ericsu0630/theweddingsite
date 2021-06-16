@@ -29,6 +29,7 @@ class _NavBarState extends State<NavBar> {
           navBarItem('Venue', 1),
           navBarItem('Accommodation', 2),
           navBarItem('Program', 3),
+          navBarItem('Covid Safety', 4),
         ],
       ),
     );
@@ -57,7 +58,7 @@ class _NavBarState extends State<NavBar> {
             Navigator.pushNamedAndRemoveUntil(
                 context, '/program', (route) => false);
             break;
-          case 3:
+          case 4:
             Navigator.pushNamedAndRemoveUntil(
                 context, '/covid', (route) => false);
             break;
