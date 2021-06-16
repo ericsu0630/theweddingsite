@@ -124,10 +124,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   SizedBox(height: 32.0),
                   FadeTransition(
                     opacity: _titleAnimation,
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
                         elevation: 8.0,
-                        side: BorderSide(width: 2.0, color: Colors.white),
+                        primary: Colors.white,
+                        side: BorderSide(color: Colors.black87, width: 2.0),
                       ),
                       child: Container(
                         padding: const EdgeInsets.only(
@@ -141,7 +142,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                             Icon(
                               Icons.keyboard_arrow_down_rounded,
-                              color: Colors.white,
+                              color: Colors.black87,
                               size: 24.0,
                             ),
                           ],

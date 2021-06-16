@@ -27,17 +27,11 @@ class MyFonts {
   );
 
   static TextStyle rsvpButtonText = const TextStyle(
-    color: Colors.white,
+    color: Colors.black87,
     fontSize: 20.0,
     letterSpacing: 2.0,
+    fontWeight: FontWeight.bold,
     fontFamily: 'DancingScript',
-    shadows: <Shadow>[
-      Shadow(
-        offset: Offset(5.0, 5.0),
-        blurRadius: 5.0,
-        color: Colors.black54,
-      ),
-    ],
   );
 
   static TextStyle weddingDateText = const TextStyle(
