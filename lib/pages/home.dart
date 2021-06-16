@@ -125,6 +125,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: ElevatedButton(
+                      //RSVP button styling
                       style: ElevatedButton.styleFrom(
                         elevation: 8.0,
                         primary: Colors.white,
