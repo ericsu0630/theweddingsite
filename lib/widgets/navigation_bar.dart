@@ -1,6 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
+import 'package:tsu_and_angel/pages/venue.dart';
+import 'package:tsu_and_angel/pages/covid.dart';
+import 'package:tsu_and_angel/pages/home.dart';
+import 'package:tsu_and_angel/pages/accommodation.dart';
+import 'package:tsu_and_angel/pages/program.dart';
 
 class NavBar extends StatefulWidget {
   final int selectedPosition;
@@ -44,23 +49,54 @@ class _NavBarState extends State<NavBar> {
         });
         switch (position) {
           case 0:
-            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => HomePage(),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                transitionDuration: Duration(milliseconds: 1000),
+              ),
+            );
             break;
           case 1:
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/venue', (route) => false);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => VenuePage(),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                transitionDuration: Duration(milliseconds: 1000),
+              ),
+            );
             break;
           case 2:
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/accommodation', (route) => false);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => AccommodationPage(),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                transitionDuration: Duration(milliseconds: 1000),
+              ),
+            );
             break;
           case 3:
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/program', (route) => false);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => ProgramPage(),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                transitionDuration: Duration(milliseconds: 1000),
+              ),
+            );
             break;
           case 4:
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/covid', (route) => false);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => CovidPage(),
+                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                transitionDuration: Duration(milliseconds: 1000),
+              ),
+            );
             break;
         }
       },
