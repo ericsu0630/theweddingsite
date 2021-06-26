@@ -24,7 +24,7 @@ class _RsvpFormState extends State<RsvpForm> {
       width: MediaQuery.of(context).size.width * 0.8,
       color: Colors.white,
       child: WebViewX(
-        initialContent: 'https://forms.gle/kWcWw28JAyBZCQ858', // @Tsu form URL goes here
+        initialContent: 'https://docs.google.com/forms/d/e/1FAIpQLScRSiBezvevmvAWelQLAROmCD73PUY28NFeuD_CKKfkbkMVHQ/viewform?usp=sf_link', // @Tsu form URL goes here
         initialSourceType: SourceType.URL,
         onWebViewCreated: (controller) => webviewController = controller,
       ),
