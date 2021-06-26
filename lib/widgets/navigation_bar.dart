@@ -4,8 +4,7 @@ import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/pages/home.dart';
 import 'package:tsu_and_angel/pages/covid.dart';
 import 'package:tsu_and_angel/pages/rsvp.dart';
-import 'package:tsu_and_angel/pages/accommodation.dart';
-import 'package:tsu_and_angel/pages/program.dart';
+import 'package:tsu_and_angel/pages/tips.dart';
 
 class NavBar extends StatefulWidget {
   final int selectedPosition;
@@ -33,10 +32,21 @@ class _NavBarState extends State<NavBar> {
           navBarItem('Welcome!', 0),
           navBarItem('RSVP', 1),
           navBarItem('Tips', 2),
-          // navBarItem('Program', 3),
-          navBarItem('Covid Safety', 4),
+          navBarItem('Covid Safety', 3),
         ],
       ),
+    );
+  }
+
+  void goToSelectedPage(Widget selectedPage) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => selectedPage,
+        transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+        transitionDuration: Duration(milliseconds: 100),
+      ),
+      (route) => false,
     );
   }
 
@@ -44,60 +54,22 @@ class _NavBarState extends State<NavBar> {
     return GestureDetector(
       onTap: () {
         print('$title tapped');
-        setState(() {
+        if (selected != position) {
           selected = position;
-        });
-        switch (position) {
-          case 0:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => VenuePage(),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 500),
-              ),
-            );
-            break;
-          case 1:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => HomePage(),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 500),
-              ),
-            );
-            break;
-          case 2:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => AccommodationPage(),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 500),
-              ),
-            );
-            break;
-          // case 3:
-          //   Navigator.push(
-          //     context,
-          //     PageRouteBuilder(
-          //       pageBuilder: (_, __, ___) => ProgramPage(),
-          //       transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-          //       transitionDuration: Duration(milliseconds: 500),
-          //     ),
-          //   );
-          //   break;
-          case 4:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => CovidPage(),
-                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                transitionDuration: Duration(milliseconds: 500),
-              ),
-            );
-            break;
+          switch (position) {
+            case 0:
+              goToSelectedPage(HomePage());
+              break;
+            case 1:
+              goToSelectedPage(RsvpPage());
+              break;
+            case 2:
+              goToSelectedPage(TipsPage());
+              break;
+            case 3:
+              goToSelectedPage(CovidPage());
+              break;
+          }
         }
       },
       child: Container(

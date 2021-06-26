@@ -1,55 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/styles/colors.dart';
-import 'package:tsu_and_angel/styles/font_styles.dart';
+import 'package:tsu_and_angel/widgets/background_image.dart';
+import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
-class VenuePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _VenuePageState createState() => _VenuePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
-  late AnimationController _splashAnimationController,
-      _titleAnimationController;
-  late Animation<double> _splashAnimation, _titleAnimation;
+  late AnimationController _titleAnimationController;
+  late Animation<double> _titleAnimation;
 
   @override
   void initState() {
     super.initState();
-
-    _splashAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 1000),
-        value: 0,
-        lowerBound: 0,
-        upperBound: 1,
-        vsync: this);
-
-    _splashAnimation = CurvedAnimation(
-        parent: _splashAnimationController, curve: Curves.fastOutSlowIn);
-
-    _splashAnimationController.forward();
-
     _titleAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 1000),
-        value: 0,
-        lowerBound: 0,
-        upperBound: 1,
-        vsync: this);
-
-    _titleAnimation = CurvedAnimation(
-        parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
-
-    _splashAnimationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _titleAnimationController.forward();
-      }
-    });
+        duration: const Duration(milliseconds: 1000), value: 0, lowerBound: 0, upperBound: 1, vsync: this);
+    _titleAnimation = CurvedAnimation(parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
+    _titleAnimationController.forward();
   }
 
   @override
   void dispose() {
-    _splashAnimationController.dispose();
     _titleAnimationController.dispose();
     super.dispose();
   }
@@ -83,21 +57,7 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
     return Container(
       child: Stack(
         children: <Widget>[
-          FadeTransition(
-            opacity: _splashAnimation,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              height: MediaQuery.of(context).size.height - 64,
-              child: Opacity(
-                opacity: MyOpacity.opacity,
-                child: Image.asset(
-                  'assets/images/belair_picture.jpeg',
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-          ),
+          backgroundImage(context),
           Positioned.fill(
             child: Align(
               alignment: Alignment.center,
@@ -106,10 +66,29 @@ class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
                 children: [
                   FadeTransition(
                     opacity: _titleAnimation,
-                    child: Text(
-                      '',
-                      textAlign: TextAlign.center,
-                      style: MyFonts.comingSoonText,
+                    child: ContentCard(
+                      titleText: 'title', //@Tsu
+                      contentList: [
+                        Text('this is my content'),
+                      ],
+                    ),
+                  ),
+                  FadeTransition(
+                    opacity: _titleAnimation,
+                    child: ContentCard(
+                      titleText: 'title',
+                      contentList: [
+                        Text('this is my content'),
+                      ],
+                    ),
+                  ),
+                  FadeTransition(
+                    opacity: _titleAnimation,
+                    child: ContentCard(
+                      titleText: 'title',
+                      contentList: [
+                        Text('this is my content'),
+                      ],
                     ),
                   ),
                 ],

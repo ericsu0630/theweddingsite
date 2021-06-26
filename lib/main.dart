@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/pages/accommodation.dart';
-import 'package:tsu_and_angel/pages/covid.dart';
-import 'package:tsu_and_angel/pages/rsvp.dart';
-import 'package:tsu_and_angel/pages/program.dart';
 import 'package:tsu_and_angel/pages/home.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
@@ -16,11 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Palette.primary),
       debugShowCheckedModeBanner: false,
-      title: 'TsuAndAngel',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => VenuePage()
-      },
+      title: 'Angel & Tsu-Shiuan',
+      home: HomePage(),
     );
   }
 }
