@@ -32,7 +32,7 @@ class _NavBarState extends State<NavBar> {
         children: <Widget>[
           navBarItem('Welcome!', 0),
           navBarItem('RSVP', 1),
-          navBarItem('Info', 2),
+          navBarItem('Tips', 2),
           // navBarItem('Program', 3),
           navBarItem('Covid Safety', 4),
         ],

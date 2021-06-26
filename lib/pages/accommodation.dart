@@ -79,6 +79,8 @@ class _AccommodationPageState extends State<AccommodationPage>
     );
   }
 
+  String accommodation_text = "<h1> Accommodation </h1>";
+
   Widget splashScreen() {
     return Container(
       child: Stack(
@@ -107,7 +109,7 @@ class _AccommodationPageState extends State<AccommodationPage>
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      '',
+                      accommodation_text,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: 'DancingScript',
