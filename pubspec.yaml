@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^3.0.0-nullsafety.0
+  webviewx: ^0.1.0
 
 flutter:
   uses-material-design: true
