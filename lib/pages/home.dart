@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
-import 'package:tsu_and_angel/widgets/rsvp_form.dart';
 
-class HomePage extends StatefulWidget {
+class VenuePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _VenuePageState createState() => _VenuePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _VenuePageState extends State<VenuePage> with TickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
   late AnimationController _splashAnimationController,
       _titleAnimationController;
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         vsync: this);
 
     _splashAnimation = CurvedAnimation(
-        parent: _splashAnimationController, curve: Curves.easeInCubic);
+        parent: _splashAnimationController, curve: Curves.fastOutSlowIn);
 
     _splashAnimationController.forward();
 
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         vsync: this);
 
     _titleAnimation = CurvedAnimation(
-        parent: _titleAnimationController, curve: Curves.easeInCubic);
+        parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
 
     _splashAnimationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -56,11 +56,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => true,
-      child: Scaffold(
-        body: pageBody(),
-      ),
+    return Scaffold(
+      body: pageBody(),
     );
   }
 
@@ -73,10 +70,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 1,
+              selectedPosition: 0,
             ),
-            // splashScreen(),
-            RsvpForm(),
+            splashScreen(),
           ],
         ),
       ),
@@ -84,10 +80,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   Widget splashScreen() {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double ratio = width / height;
-    double pcScreenRatio = 4 / 3;
     return Container(
       child: Stack(
         children: <Widget>[
@@ -97,64 +89,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               height: MediaQuery.of(context).size.height - 64,
-              child: Image.asset(
-                (ratio > pcScreenRatio)
-                    ? 'assets/images/picture_1.JPG'
-                    : 'assets/images/picture_3.JPG',
-                fit: BoxFit.fitHeight,
+              child: Opacity(
+                opacity: MyOpacity.opacity,
+                child: Image.asset(
+                  'assets/images/belair_picture.jpeg',
+                  fit: BoxFit.fitHeight,
+                ),
               ),
             ),
           ),
           Positioned.fill(
-            bottom: 128.0,
             child: Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.center,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 32.0),
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      'Thursday, 14th October 2021',
+                      '',
                       textAlign: TextAlign.center,
-                      style: MyFonts.weddingDateText,
-                    ),
-                  ),
-                  SizedBox(height: 32.0),
-                  FadeTransition(
-                    opacity: _titleAnimation,
-                    child: ElevatedButton(
-                      //RSVP button styling
-                      style: ElevatedButton.styleFrom(
-                        elevation: 8.0,
-                        primary: Colors.white,
-                        side: BorderSide(color: Colors.black87, width: 2.0),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 8.0, left: 16.0, right: 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'RSVP',
-                              style: MyFonts.rsvpButtonText,
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: Colors.black87,
-                              size: 24.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      onPressed: () {
-                        scrollController.animateTo(
-                            MediaQuery.of(context).size.height,
-                            duration: Duration(milliseconds: 1500),
-                            curve: Curves.easeOutCubic);
-                      },
+                      style: MyFonts.comingSoonText,
                     ),
                   ),
                 ],

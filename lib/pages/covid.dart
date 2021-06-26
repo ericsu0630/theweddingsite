@@ -79,6 +79,8 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
     );
   }
 
+  String main_body_text = "With the COVID-19 pandemic being a reality in our world, we’ve made few adjustments to ensure you are as safe from viral transmission as possible.\n\n\n We will have a hand sanitization station as well as a temperature check as you arrive. \n\n\n Where possible, we will attempt to seat guests from the same household or similar friends groups together and provide enough spacing between seats.";
+
   Widget splashScreen() {
     return Container(
       child: Stack(
@@ -107,7 +109,7 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: Text(
-                      '',
+                      main_body_text,
                       textAlign: TextAlign.center,
                       style: MyFonts.comingSoonText,
                     ),

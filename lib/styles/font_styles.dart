@@ -50,9 +50,9 @@ class MyFonts {
 
   static TextStyle comingSoonText = const TextStyle(
     fontFamily: 'DancingScript',
-    fontSize: 72.0,
+    fontSize: 24.0,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: Colors.blue,
     shadows: <Shadow>[
       Shadow(
         offset: Offset(5.0, 5.0),

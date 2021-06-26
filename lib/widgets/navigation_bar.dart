@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
-import 'package:tsu_and_angel/pages/venue.dart';
-import 'package:tsu_and_angel/pages/covid.dart';
 import 'package:tsu_and_angel/pages/home.dart';
+import 'package:tsu_and_angel/pages/covid.dart';
+import 'package:tsu_and_angel/pages/rsvp.dart';
 import 'package:tsu_and_angel/pages/accommodation.dart';
 import 'package:tsu_and_angel/pages/program.dart';
 
