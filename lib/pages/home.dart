@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             NavBar(
               selectedPosition: 1,
             ),
-            splashScreen(),
+            // splashScreen(),
             RsvpForm(),
           ],
         ),
