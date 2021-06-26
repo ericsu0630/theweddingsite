@@ -20,7 +20,7 @@ class _RsvpFormState extends State<RsvpForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height - 64,
       width: MediaQuery.of(context).size.width * 0.8,
       color: Colors.white,
       child: WebViewX(
