@@ -53,6 +53,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
+  String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : till curfew :(";
+  String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357\nGPS: https://g.page/Belairweddings";
+
   Widget splashScreen() {
     return Container(
       child: Stack(
@@ -67,27 +70,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: ContentCard(
-                      titleText: 'title', //@Tsu
+                      titleText: 'Photo!!', //@Tsu
                       contentList: [
-                        Text('this is my content'),
+                        Text('this is going to be a photo followed by a button'),
                       ],
                     ),
                   ),
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: ContentCard(
-                      titleText: 'title',
+                      titleText: 'Date / Time',
                       contentList: [
-                        Text('this is my content'),
+                        Text(date_time_string),
                       ],
                     ),
                   ),
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: ContentCard(
-                      titleText: 'title',
+                      titleText: 'Venue',
                       contentList: [
-                        Text('this is my content'),
+                        Text(venue_string),
                       ],
                     ),
                   ),
