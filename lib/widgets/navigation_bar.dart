@@ -87,7 +87,7 @@ class _NavBarState extends State<NavBar> {
           title,
           maxLines: 1,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 23,
             color: Palette.primary,
             fontFamily: 'DancingScript',
             fontWeight: FontWeight.bold,
