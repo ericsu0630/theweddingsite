@@ -30,13 +30,13 @@ class ContentCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0), //space inside the cards
       width: MediaQuery.of(context).size.width * cardWidth, //width of the cards as calculated above
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.85), //opacity of the card
+        color: Colors.white.withOpacity(0.45), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black54.withOpacity(0.3),
+            color: Colors.green.withOpacity(0.2),
             spreadRadius: 2,
-            blurRadius: 2,
+            blurRadius: 4,
             offset: Offset(3, 3),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
@@ -69,21 +70,24 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FadeTransition(
-                    opacity: _titleAnimation,
-                    child: ContentCard(
-                      titleText: 'Photo!!', //@Tsu
-                      contentList: [
-                        Text(photo_text),
-                      ],
-                    ),
-                  ),
+                  // FadeTransition(
+                  //   opacity: _titleAnimation,
+                  //   child: ContentCard(
+                  //     titleText: 'Photo!!', //@Tsu
+                  //     contentList: [
+                  //       Text(photo_text),
+                  //     ],
+                  //   ),
+                  // ),
                   FadeTransition(
                     opacity: _titleAnimation,
                     child: ContentCard(
                       titleText: 'Date / Time',
                       contentList: [
-                        Text(date_time_string),
+                        Text(
+                          date_time_string,
+                          style: MyFonts.contentText,
+                          ),
                       ],
                     ),
                   ),
@@ -92,7 +96,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: ContentCard(
                       titleText: 'Venue',
                       contentList: [
-                        Text(venue_string),
+                        Text(
+                          venue_string,
+                          style: MyFonts.contentText,
+                          ),
                       ],
                     ),
                   ),
@@ -101,7 +108,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: ContentCard(
                       titleText: 'Program',
                       contentList: [
-                        Text(program_string),
+                        Text(
+                          program_string,
+                          style: MyFonts.contentText,
+                          ),
                       ],
                     ),
                   ),
