@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
+import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 import 'package:tsu_and_angel/widgets/rsvp_form.dart';
 
@@ -28,6 +29,17 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
         Stack(
           children: <Widget>[
             backgroundImage(context),
+            Positioned.fill(
+                child: Center(
+              child: ContentCard(
+                titleText: 'Please wait...',
+                contentList: [
+                  CircularProgressIndicator(
+                    color: Colors.black54,
+                  ),
+                ],
+              ),
+            )),
             RsvpForm(),
           ],
         ),

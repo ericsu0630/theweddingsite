@@ -3,6 +3,7 @@ import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
+import 'package:tsu_and_angel/widgets/wedding_party.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -76,16 +77,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //
     // 22:00
     // Home time
-    //
-    // Wedding party
-    // One picture each
-    //
-    // Registry
     String gps_link = "https://g.page/Belairweddings";
     return Container(
       height: MediaQuery.of(context).size.height - 64,
       child: Scrollbar(
         controller: scrollController,
+        isAlwaysShown: true,
         child: SingleChildScrollView(
           controller: scrollController,
           child: Column(
@@ -102,7 +99,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   Positioned.fill(
-                    bottom: 128.0,
+                    bottom: 80.0,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: FadeTransition(
@@ -115,7 +112,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             side: BorderSide(color: Colors.black87, width: 2.0),
                           ),
                           child: Container(
-                            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0, right: 8.0),
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              bottom: 8.0,
+                              left: 16.0,
+                            ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -126,14 +127,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
                                   color: Colors.black87,
-                                  size: 24.0,
+                                  size: 32.0,
                                 ),
                               ],
                             ),
                           ),
                           onPressed: () {
                             scrollController.animateTo(MediaQuery.of(context).size.height,
-                                duration: Duration(milliseconds: 1500), curve: Curves.easeOutCubic);
+                                //animation settings
+                                duration: Duration(milliseconds: 2000),
+                                curve: Curves.easeOutQuart);
                           },
                         ),
                       ),
@@ -147,43 +150,74 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   Container(
                     child: ListView(
                       shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 32.0),
                       children: <Widget>[
-                        FadeTransition(
-                          opacity: _titleAnimation,
-                          child: ContentCard(
-                            titleText: 'Date / Time',
-                            contentList: [
-                              Text(
-                                date_time_string,
-                                style: MyFonts.contentText,
-                              ),
-                            ],
-                          ),
+                        ContentCard(
+                          titleText: 'Date / Time',
+                          contentList: [
+                            Text(
+                              date_time_string,
+                              style: MyFonts.contentText,
+                            ),
+                          ],
                         ),
-                        FadeTransition(
-                          opacity: _titleAnimation,
-                          child: ContentCard(
-                            titleText: 'Venue',
-                            contentList: [
-                              Text(
-                                venue_string,
-                                style: MyFonts.contentText,
-                              ),
-                            ],
-                          ),
+                        ContentCard(
+                          titleText: 'Venue',
+                          contentList: [
+                            Text(
+                              venue_string,
+                              style: MyFonts.contentText,
+                            ),
+                          ],
                         ),
-                        FadeTransition(
-                          opacity: _titleAnimation,
-                          child: ContentCard(
-                            titleText: 'Program',
-                            contentList: [
-                              Text(
-                                program_string,
-                                style: MyFonts.contentText,
-                              ),
-                            ],
-                          ),
+                        ContentCard(
+                          titleText: 'Program',
+                          contentList: [
+                            Text(
+                              program_string,
+                              style: MyFonts.contentText,
+                            ),
+                          ],
                         ),
+                        WeddingParty(
+                          memberList: [
+                            WeddingParty.member(
+                              title: 'Groom',
+                              name: 'Doge',
+                              imagePath: 'assets/images/doge.jpeg',
+                            ),
+                            WeddingParty.member(
+                              title: 'Bride',
+                              name: 'Lady Doge',
+                              imagePath: 'assets/images/lady_doge.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Groomsman',
+                              name: 'Cool Doge',
+                              imagePath: 'assets/images/cool_doge.jpg',
+                            ),
+                            WeddingParty.member(
+                              title: 'Groomsman',
+                              name: 'Police Doge',
+                              imagePath: 'assets/images/police_doge.jpg',
+                            ),
+                            WeddingParty.member(
+                              title: 'Groomsman',
+                              name: 'Sad Doge',
+                              imagePath: 'assets/images/sad_doge.jpg',
+                            ),
+                            WeddingParty.member(
+                              title: 'Groomsman',
+                              name: 'Sir Doge',
+                              imagePath: 'assets/images/sir_doge.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Bridesmaid',
+                              name: 'Dogette',
+                              imagePath: 'assets/images/dogette.jfif',
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   )

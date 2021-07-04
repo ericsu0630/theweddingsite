@@ -58,24 +58,20 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
       child: Stack(
         children: <Widget>[
           backgroundImage(context),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FadeTransition(
-                    opacity: _titleAnimation,
-                    child: ContentCard(
-                      titleText: 'Title',
-                      contentList: [
-                        Text('content goes here'),
-                      ],
-                    ),
-                  ),
-                ],
+          ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(vertical: 32.0),
+            children: [
+              FadeTransition(
+                opacity: _titleAnimation,
+                child: ContentCard(
+                  titleText: 'Title',
+                  contentList: [
+                    Text('content goes here'),
+                  ],
+                ),
               ),
-            ),
+            ],
           )
         ],
       ),
