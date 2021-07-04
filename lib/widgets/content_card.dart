@@ -9,24 +9,24 @@ class ContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //account for different screen sizes
-    // double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
-    // double ratio = width / height;
-    // double pcScreenRatio = 16 / 9;
-    // double tabletScreenRatio = 4 / 3;
-    // double marginWidth = 0.2;
-    // if (ratio > tabletScreenRatio) {
-    //   marginWidth = 0.25;
-    // }
-    // if (ratio > pcScreenRatio) {
-    //   marginWidth = 0.3;
-    // }
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double ratio = width / height;
+    double pcScreenRatio = 16 / 9;
+    double tabletScreenRatio = 4 / 3;
+    double marginWidth = 0.2;
+    if (ratio > tabletScreenRatio) {
+      marginWidth = 0.25;
+    }
+    if (ratio > pcScreenRatio) {
+      marginWidth = 0.3;
+    }
 
     contentList.insert(0, SizedBox(height: 16.0));
     contentList.insert(0, Text(titleText, style: MyFonts.contentTitleText));
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16.0),
+      margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
       //vertical and
       // horizontal
       // margins

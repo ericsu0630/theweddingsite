@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   Positioned.fill(
-                    bottom: 80.0,
+                    bottom: 64.0,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: FadeTransition(
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           style: ElevatedButton.styleFrom(
                             elevation: 8.0,
                             primary: Colors.white,
-                            side: BorderSide(color: Colors.black87, width: 2.0),
+                            side: BorderSide(color: Colors.black54, width: 2.0),
                           ),
                           child: Container(
                             padding: const EdgeInsets.only(
@@ -122,12 +122,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               children: [
                                 Text(
                                   'More',
-                                  style: MyFonts.contentTitleText,
+                                  style: MyFonts.buttonText,
                                 ),
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
-                                  color: Colors.black87,
-                                  size: 32.0,
+                                  color: Colors.black54,
+                                  size: 24.0,
                                 ),
                               ],
                             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
@@ -58,29 +59,25 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
       child: Stack(
         children: <Widget>[
           backgroundImage(context),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FadeTransition(
-                    opacity: _titleAnimation,
-                    child: ContentCard(
-                      titleText: 'Covid Safety',
-                      contentList: [
-                        Text(
-                          "With the COVID-19 pandemic being a reality in our world, we’ve made few adjustments to ensure you are as safe from viral transmission as possible.\n\n\n "
-                          "We will have a hand sanitization station as well as a temperature check as you arrive. \n\n\n "
-                          "Where possible, we will attempt to seat guests from the same household or similar friends groups together and"
-                          " provide enough spacing between seats.",
-                        ),
-                      ],
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FadeTransition(
+                opacity: _titleAnimation,
+                child: ContentCard(
+                  titleText: 'Covid Safety',
+                  contentList: [
+                    Text(
+                      "With the COVID-19 pandemic being a reality in our world, we’ve made few adjustments to ensure you are as safe from viral transmission as possible.\n\n\n "
+                      "We will have a hand sanitization station as well as a temperature check as you arrive. \n\n\n "
+                      "Where possible, we will attempt to seat guests from the same household or similar friends groups together and"
+                      " provide enough spacing between seats.",
+                      style: MyFonts.contentText,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+            ],
           )
         ],
       ),

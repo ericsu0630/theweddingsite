@@ -13,4 +13,10 @@ class MyFonts {
     fontWeight: FontWeight.w600,
     color: Colors.black54,
   );
+  static TextStyle buttonText = const TextStyle(
+    fontSize: 24.0,
+    fontFamily: "DancingScript",
+    fontWeight: FontWeight.w900,
+    color: Colors.black54,
+  );
 }
