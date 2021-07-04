@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : till curfew :(";
   String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357\nGPS: https://g.page/Belairweddings";
+  String photo_text = "Some text, \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n A button somewhere here with downwards arrow";
 
   Widget splashScreen() {
     return Container(
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: ContentCard(
                       titleText: 'Photo!!', //@Tsu
                       contentList: [
-                        Text('this is going to be a photo followed by a button'),
+                        Text(photo_text),
                       ],
                     ),
                   ),
