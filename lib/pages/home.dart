@@ -55,9 +55,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : till curfew :(";
-  String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357\nGPS: https://g.page/Belairweddings";
+  String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357";
   String photo_text = "Some text, \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n A button somewhere here with downwards arrow";
   String program_string = "";
+  String gps_link = "https://g.page/Belairweddings";
 
   Widget splashScreen() {
     return Container(

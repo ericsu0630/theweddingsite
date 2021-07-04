@@ -14,12 +14,12 @@ class ContentCard extends StatelessWidget {
     double ratio = width / height;
     double pcScreenRatio = 16 / 9;
     double tabletScreenRatio = 4 / 3;
-    double cardWidth = 0.8;
+    double cardWidth = 0.7;
     if (ratio > tabletScreenRatio) {
-      cardWidth = 0.6;
+      cardWidth = 0.45;
     }
     if (ratio > pcScreenRatio) {
-      cardWidth = 0.4;
+      cardWidth = 0.3;
     }
 
     contentList.insert(0, SizedBox(height: 16.0));
@@ -27,22 +27,23 @@ class ContentCard extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16.0), //space between cards
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0), //space inside the cards
+      padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 24.0), //space inside the cards
       width: MediaQuery.of(context).size.width * cardWidth, //width of the cards as calculated above
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.45), //opacity of the card
+        color: Colors.white.withOpacity(0.5), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.green.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(3, 3),
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.green.withOpacity(0.2),
+        //     spreadRadius: 2,
+        //     blurRadius: 4,
+        //     offset: Offset(3, 3),
+        //   ),
+        // ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment : CrossAxisAlignment.center,
         children: contentList,
       ),
     );
