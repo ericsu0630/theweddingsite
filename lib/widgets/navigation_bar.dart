@@ -29,8 +29,8 @@ class _NavBarState extends State<NavBar> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          navBarItem('Welcome!', 0),
-          navBarItem('RSVP', 1),
+          navBarItem('Welcome! ', 0),
+          navBarItem('RSVP ', 1),
           navBarItem('Tips', 2),
           navBarItem('Covid Safety', 3),
         ],

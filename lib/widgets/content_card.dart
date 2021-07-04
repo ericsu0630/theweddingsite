@@ -14,21 +14,20 @@ class ContentCard extends StatelessWidget {
     double ratio = width / height;
     double pcScreenRatio = 16 / 9;
     double tabletScreenRatio = 4 / 3;
-    double cardWidth = 0.7;
+    double marginWidth = 80.0;
     if (ratio > tabletScreenRatio) {
-      cardWidth = 0.45;
+      marginWidth = 320.0;
     }
     if (ratio > pcScreenRatio) {
-      cardWidth = 0.3;
+      marginWidth = 640.0;
     }
 
     contentList.insert(0, SizedBox(height: 16.0));
     contentList.insert(0, Text(titleText, style: MyFonts.contentTitleText));
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16.0), //space between cards
+      margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: marginWidth), //vertical and horizontal margins
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 24.0), //space inside the cards
-      width: MediaQuery.of(context).size.width * cardWidth, //width of the cards as calculated above
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -43,7 +42,7 @@ class ContentCard extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment : CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: contentList,
       ),
     );
