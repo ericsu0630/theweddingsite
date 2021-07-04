@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ),
                           onPressed: () {
-                            scrollController.animateTo(MediaQuery.of(context).size.height,
+                            scrollController.animateTo(MediaQuery.of(context).size.height - 64,
                                 //animation settings
                                 duration: Duration(milliseconds: 2000),
                                 curve: Curves.easeOutQuart);
@@ -148,9 +148,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   backgroundImage(context),
                   Container(
-                    child: ListView(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(vertical: 32.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ContentCard(
                           titleText: 'Date / Time',
@@ -170,15 +169,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-                        ContentCard(
-                          titleText: 'Program',
-                          contentList: [
-                            Text(
-                              program_string,
-                              style: MyFonts.contentText,
-                            ),
-                          ],
-                        ),
+                        // ContentCard(
+                        //   titleText: 'Program',
+                        //   contentList: [
+                        //     Text(
+                        //       program_string,
+                        //       style: MyFonts.contentText,
+                        //     ),
+                        //   ],
+                        // ),
                         WeddingParty(
                           memberList: [
                             WeddingParty.member(
