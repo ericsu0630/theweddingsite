@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     color: Colors.white,
                     height: MediaQuery.of(context).size.height - 64,
                     child: Image.asset(
-                      (ratio > pcScreenRatio) ? 'assets/images/picture_1.JPG' : 'assets/images/picture_3.JPG',
+                      (ratio > pcScreenRatio) ? 'assets/images/main.jpg' : 'assets/images/main.jpg',
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -182,38 +182,63 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           memberList: [
                             WeddingParty.member(
                               title: 'Groom',
-                              name: 'Doge',
-                              imagePath: 'assets/images/doge.jpeg',
+                              name: 'Tsu-Shiuan',
+                              imagePath: 'assets/images/tsu.png',
                             ),
                             WeddingParty.member(
                               title: 'Bride',
-                              name: 'Lady Doge',
-                              imagePath: 'assets/images/lady_doge.png',
+                              name: 'Angel',
+                              imagePath: 'assets/images/angel.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Best Man',
+                              name: 'Eric',
+                              imagePath: 'assets/images/eric.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Maid of Honour',
+                              name: 'Nadia',
+                              imagePath: 'assets/images/nadia.png',
                             ),
                             WeddingParty.member(
                               title: 'Groomsman',
-                              name: 'Cool Doge',
-                              imagePath: 'assets/images/cool_doge.jpg',
+                              name: 'Paul',
+                              imagePath: 'assets/images/paul.png',
                             ),
                             WeddingParty.member(
                               title: 'Groomsman',
-                              name: 'Police Doge',
-                              imagePath: 'assets/images/police_doge.jpg',
+                              name: 'Richard',
+                              imagePath: 'assets/images/richard.png',
                             ),
                             WeddingParty.member(
                               title: 'Groomsman',
-                              name: 'Sad Doge',
-                              imagePath: 'assets/images/sad_doge.jpg',
-                            ),
-                            WeddingParty.member(
-                              title: 'Groomsman',
-                              name: 'Sir Doge',
-                              imagePath: 'assets/images/sir_doge.png',
+                              name: 'Tommy',
+                              imagePath: 'assets/images/tommy.png',
                             ),
                             WeddingParty.member(
                               title: 'Bridesmaid',
-                              name: 'Dogette',
-                              imagePath: 'assets/images/dogette.jfif',
+                              name: 'Corli',
+                              imagePath: 'assets/images/corli.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Bridesmaid',
+                              name: 'Davina',
+                              imagePath: 'assets/images/davina.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Bridesmaid',
+                              name: 'Kusum',
+                              imagePath: 'assets/images/kusum.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Officiant',
+                              name: 'Ariel',
+                              imagePath: 'assets/images/ariel.png',
+                            ),
+                            WeddingParty.member(
+                              title: 'Ring Bearer',
+                              name: 'Avery',
+                              imagePath: 'assets/images/avery.png',
                             ),
                           ],
                         )
