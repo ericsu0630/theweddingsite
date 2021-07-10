@@ -12,7 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Palette.primary),
       debugShowCheckedModeBanner: false,
-      title: 'Angel & Tsu-Shiuan',
+      onGenerateTitle: (BuildContext context) {
+        return 'Tsu-Shiuan & Angel';
+      },
       home: HomePage(),
     );
   }

@@ -85,11 +85,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       alignment: Alignment.bottomCenter,
                       child: FadeTransition(
                         opacity: _titleAnimation,
-                        child: ElevatedButton(
+                        child: OutlinedButton(
                           //RSVP button styling
-                          style: ElevatedButton.styleFrom(
-                            elevation: 1.0,
-                            primary: Colors.transparent,
+                          style: OutlinedButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.black26.withOpacity(0.2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32.0),
+                            ),
                             side: BorderSide(color: Colors.white, width: 2.0),
                           ),
                           child: Container(
@@ -132,7 +135,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: MediaQuery.of(context).size.height - 64,
                     child: Center(
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           ContentCard(
                             titleText: 'Date / Time',
@@ -219,7 +222,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Positioned.fill(
+                    bottom: 8.0,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          size: 36.0,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          scrollController.animateTo(MediaQuery.of(context).size.height * 2 - 128,
+                              //animation settings
+                              duration: Duration(milliseconds: 2000),
+                              curve: Curves.easeOutQuart);
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
               Stack(
