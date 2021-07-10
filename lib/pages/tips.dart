@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
+import 'package:tsu_and_angel/widgets/google_map.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
 class TipsPage extends StatefulWidget {
@@ -54,8 +55,9 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
     );
   }
 
-  String text_1="Lemoenskloof \nOlive Tree Lodge\nMadeliefie Guest Accommodation\n20 min from Stellenbosch central \n30min from Franschhoek central";
-  String text_2="";
+  String text_1 =
+      "Lemoenskloof \nOlive Tree Lodge\nMadeliefie Guest Accommodation\n20 min from Stellenbosch central \n30min from Franschhoek central";
+  String text_2 = "";
 
   Widget splashScreen() {
     return Container(
@@ -81,12 +83,9 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
               FadeTransition(
                 opacity: _titleAnimation,
                 child: ContentCard(
-                  titleText: 'Accommodation',
+                  titleText: 'Directions',
                   contentList: [
-                    Text(
-                      text_1,
-                      style: MyFonts.contentText,
-                    ),
+                    MyGoogleMap(),
                   ],
                 ),
               ),
