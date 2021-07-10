@@ -26,11 +26,11 @@ class ContentCard extends StatelessWidget {
     contentList.insert(0, Text(titleText, style: MyFonts.contentTitleText));
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
+      margin: EdgeInsets.symmetric(vertical: 12.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
       //vertical and
       // horizontal
       // margins
-      padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 36.0), //space inside the cards
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0), //space inside the cards
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),

@@ -4,7 +4,8 @@ import 'package:tsu_and_angel/styles/font_styles.dart';
 
 class WeddingParty extends StatelessWidget {
   final List<Widget> memberList;
-  const WeddingParty({Key? key, required this.memberList}) : super(key: key);
+  WeddingParty({Key? key, required this.memberList}) : super(key: key);
+  ScrollController scroll_controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,15 @@ class WeddingParty extends StatelessWidget {
             height: 160.0,
             width: 590.0,
             child: Center(
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: memberList,
+              child: Scrollbar(
+                isAlwaysShown: true,
+                controller: scroll_controller,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: memberList,
+                  controller: scroll_controller,
+                ),
               ),
             ),
           ),
