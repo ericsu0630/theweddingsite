@@ -26,7 +26,7 @@ class ContentCard extends StatelessWidget {
     contentList.insert(0, Text(titleText, style: MyFonts.contentTitleText));
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
       //vertical and
       // horizontal
       // margins
