@@ -56,7 +56,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : till curfew :(";
     String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357";
-    String program_string = "14:00\nGuest arrival\nCeremony\n\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n\n20:00\nDance floor opens\n\n\n~22:00\nHome time! (estimated curfew)\n";
+    String program_string =
+        "14:00\nGuest arrival\nCeremony\n\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n\n20:00\nDance floor opens\n\n\n~22:00\nHome time! (estimated curfew)\n";
     String gps_link = "https://g.page/Belairweddings";
     return Container(
       height: MediaQuery.of(context).size.height - 64,
@@ -87,9 +88,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: ElevatedButton(
                           //RSVP button styling
                           style: ElevatedButton.styleFrom(
-                            elevation: 8.0,
-                            primary: Colors.white,
-                            side: BorderSide(color: Colors.black54, width: 2.0),
+                            elevation: 1.0,
+                            primary: Colors.transparent,
+                            side: BorderSide(color: Colors.white, width: 2.0),
                           ),
                           child: Container(
                             padding: const EdgeInsets.only(
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 ),
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
-                                  color: Colors.black54,
+                                  color: Colors.white,
                                   size: 24.0,
                                 ),
                               ],
@@ -127,8 +128,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Stack(
                 children: <Widget>[
                   backgroundImage(context),
-                  Center(
-                    child: Container(
+                  Container(
+                    height: MediaQuery.of(context).size.height - 64,
+                    child: Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
@@ -224,19 +226,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   backgroundImage(context),
                   Container(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ContentCard(
-                          titleText: 'Program',
-                          contentList: [
-                            Text(
-                              program_string,
-                              style: MyFonts.contentText,
-                            ),
-                          ],
-                        ),
-                      ],
+                    height: MediaQuery.of(context).size.height - 64,
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ContentCard(
+                            titleText: 'Program',
+                            contentList: [
+                              Text(
+                                program_string,
+                                style: MyFonts.contentText,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/colors.dart';
 
 class MyFonts {
   static TextStyle contentTitleText = const TextStyle(
@@ -19,16 +20,16 @@ class MyFonts {
     fontWeight: FontWeight.w600,
     color: Colors.black87,
   );
-  static TextStyle contentTextBold = const TextStyle(
+  static TextStyle contentTextBold = TextStyle(
     fontSize: 18.0,
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w600,
-    color: Color(0xffb30d45),
+    color: Palette.primary,
   );
   static TextStyle buttonText = const TextStyle(
     fontSize: 24.0,
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w900,
-    color: Colors.black54,
+    color: Colors.white,
   );
 }
