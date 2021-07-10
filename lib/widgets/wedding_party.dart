@@ -53,6 +53,7 @@ class WeddingParty extends StatelessWidget {
           ),
           Expanded(
             child: CircleAvatar(
+              backgroundColor: Colors.transparent,
               radius: 56.0,
               backgroundImage: AssetImage(imagePath),
             ),
