@@ -56,27 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : till curfew :(";
     String venue_string = "Belair Pavillion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357";
-    String program_string = "";
-    // 14:00
-    // Guest arrival
-    // Ceremony
-    //
-    // 15:00
-    // Drinks and Canapés
-    // Photos
-    // Lawn games
-    //
-    // 17:30
-    // Wedding party photos
-    // Reception
-    // Speeches
-    // First Dance
-    //
-    // 20:00
-    // Dance floor opens
-    //
-    // 22:00
-    // Home time
+    String program_string = "14:00\nGuest arrival\nCeremony\n\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n\n20:00\nDance floor opens\n\n\n~22:00\nHome time! (estimated curfew)\n";
     String gps_link = "https://g.page/Belairweddings";
     return Container(
       height: MediaQuery.of(context).size.height - 64,
@@ -169,15 +149,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-                        // ContentCard(
-                        //   titleText: 'Program',
-                        //   contentList: [
-                        //     Text(
-                        //       program_string,
-                        //       style: MyFonts.contentText,
-                        //     ),
-                        //   ],
-                        // ),
+                        ContentCard(
+                          titleText: 'Program',
+                          contentList: [
+                            Text(
+                              program_string,
+                              style: MyFonts.contentText,
+                            ),
+                          ],
+                        ),
                         WeddingParty(
                           memberList: [
                             WeddingParty.member(
