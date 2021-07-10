@@ -14,7 +14,7 @@ class ContentCard extends StatelessWidget {
     double ratio = width / height;
     double pcScreenRatio = 16 / 9;
     double tabletScreenRatio = 4 / 3;
-    double marginWidth = 0.2;
+    double marginWidth = 0.14;
     if (ratio > tabletScreenRatio) {
       marginWidth = 0.25;
     }

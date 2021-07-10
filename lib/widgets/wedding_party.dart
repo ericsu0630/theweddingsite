@@ -11,8 +11,8 @@ class WeddingParty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //vertical and horizontal margins
-      margin: const EdgeInsets.symmetric(vertical: 16.0),
-      padding: const EdgeInsets.symmetric(vertical: 24.0), //space inside the cards
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0), //space inside the cards
       color: Colors.white.withOpacity(0.5),
       child: Column(
         children: [
