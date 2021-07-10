@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   Positioned.fill(
-                    bottom: 32.0,
+                    bottom: 40.0,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: FadeTransition(
