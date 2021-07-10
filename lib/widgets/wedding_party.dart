@@ -21,6 +21,7 @@ class WeddingParty extends StatelessWidget {
           ),
           Container(
             height: 160.0,
+            width: 590.0,
             child: Center(
               child: ListView(
                 shrinkWrap: true,
