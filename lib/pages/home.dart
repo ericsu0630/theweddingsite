@@ -127,28 +127,106 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Stack(
                 children: <Widget>[
                   backgroundImage(context),
+                  Center(
+                    child: Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ContentCard(
+                            titleText: 'Date / Time',
+                            contentList: [
+                              Text(
+                                date_time_string,
+                                style: MyFonts.contentText,
+                              ),
+                            ],
+                          ),
+                          ContentCard(
+                            titleText: 'Venue',
+                            contentList: [
+                              Text(
+                                venue_string,
+                                style: MyFonts.contentText,
+                              ),
+                            ],
+                          ),
+                          WeddingParty(
+                            memberList: [
+                              WeddingParty.member(
+                                title: 'Groom',
+                                name: 'Tsu-Shiuan',
+                                imagePath: 'assets/images/tsu.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Bride',
+                                name: 'Angel',
+                                imagePath: 'assets/images/angel.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Best Man',
+                                name: 'Eric',
+                                imagePath: 'assets/images/eric.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Maid of Honour',
+                                name: 'Nadia',
+                                imagePath: 'assets/images/nadia.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Groomsman',
+                                name: 'Paul',
+                                imagePath: 'assets/images/paul.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Groomsman',
+                                name: 'Richard',
+                                imagePath: 'assets/images/richard.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Groomsman',
+                                name: 'Tommy',
+                                imagePath: 'assets/images/tommy.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Bridesmaid',
+                                name: 'Corli',
+                                imagePath: 'assets/images/corli.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Bridesmaid',
+                                name: 'Davina',
+                                imagePath: 'assets/images/davina.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Bridesmaid',
+                                name: 'Kusum',
+                                imagePath: 'assets/images/kusum.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Officiant',
+                                name: 'Ariel',
+                                imagePath: 'assets/images/ariel.png',
+                              ),
+                              WeddingParty.member(
+                                title: 'Ring Bearer',
+                                name: 'Avery',
+                                imagePath: 'assets/images/avery.png',
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Stack(
+                children: <Widget>[
+                  backgroundImage(context),
                   Container(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        ContentCard(
-                          titleText: 'Date / Time',
-                          contentList: [
-                            Text(
-                              date_time_string,
-                              style: MyFonts.contentText,
-                            ),
-                          ],
-                        ),
-                        ContentCard(
-                          titleText: 'Venue',
-                          contentList: [
-                            Text(
-                              venue_string,
-                              style: MyFonts.contentText,
-                            ),
-                          ],
-                        ),
                         ContentCard(
                           titleText: 'Program',
                           contentList: [
@@ -158,78 +236,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-                        WeddingParty(
-                          memberList: [
-                            WeddingParty.member(
-                              title: 'Groom',
-                              name: 'Tsu-Shiuan',
-                              imagePath: 'assets/images/tsu.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Bride',
-                              name: 'Angel',
-                              imagePath: 'assets/images/angel.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Best Man',
-                              name: 'Eric',
-                              imagePath: 'assets/images/eric.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Maid of Honour',
-                              name: 'Nadia',
-                              imagePath: 'assets/images/nadia.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Groomsman',
-                              name: 'Paul',
-                              imagePath: 'assets/images/paul.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Groomsman',
-                              name: 'Richard',
-                              imagePath: 'assets/images/richard.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Groomsman',
-                              name: 'Tommy',
-                              imagePath: 'assets/images/tommy.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Bridesmaid',
-                              name: 'Corli',
-                              imagePath: 'assets/images/corli.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Bridesmaid',
-                              name: 'Davina',
-                              imagePath: 'assets/images/davina.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Bridesmaid',
-                              name: 'Kusum',
-                              imagePath: 'assets/images/kusum.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Officiant',
-                              name: 'Ariel',
-                              imagePath: 'assets/images/ariel.png',
-                            ),
-                            WeddingParty.member(
-                              title: 'Ring Bearer',
-                              name: 'Avery',
-                              imagePath: 'assets/images/avery.png',
-                            ),
-                          ],
-                        )
                       ],
                     ),
-                  )
-                ],
-              ),
-              Stack(
-                children: <Widget>[
-                  backgroundImage(context),
+                  ),
                 ],
               ),
             ],

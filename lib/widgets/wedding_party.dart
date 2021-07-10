@@ -42,7 +42,7 @@ class WeddingParty extends StatelessWidget {
         children: <Widget>[
           Text(
             name,
-            style: MyFonts.contentText,
+            style: MyFonts.contentTextDarker,
           ),
           Expanded(
             child: CircleAvatar(
@@ -52,7 +52,7 @@ class WeddingParty extends StatelessWidget {
           ),
           Text(
             title,
-            style: MyFonts.contentText,
+            style: MyFonts.contentTextBold,
           ),
         ],
       ),
