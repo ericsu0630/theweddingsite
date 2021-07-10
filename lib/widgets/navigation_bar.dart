@@ -25,23 +25,20 @@ class _NavBarState extends State<NavBar> {
       width: MediaQuery.of(context).size.width,
       color: Colors.white,
       height: 64,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                navBarItem('Welcome! ', 0),
-                navBarItem('RSVP ', 1),
-                navBarItem('Tips', 2),
-                navBarItem('Covid Safety', 3),
-              ],
-            ),
+      child: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              navBarItem('Welcome! ', 0),
+              navBarItem('RSVP ', 1),
+              navBarItem('Tips', 2),
+              navBarItem('Covid Safety', 3),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -227,6 +227,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   )
                 ],
               ),
+              Stack(
+                children: <Widget>[
+                  backgroundImage(context),
+                ],
+              ),
             ],
           ),
         ),
