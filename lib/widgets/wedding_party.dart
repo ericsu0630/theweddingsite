@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
+import 'dart:math';
 
 class WeddingParty extends StatelessWidget {
   final List<Widget> memberList;
@@ -10,11 +11,11 @@ class WeddingParty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //account for different screen sizes
-    double width = MediaQuery.of(context).size.width;
+    double width = min(MediaQuery.of(context).size.width, 750);
     double height = MediaQuery.of(context).size.height;
     double ratio = width / height;
     double pcScreenRatio = 16 / 9;
-    double tabletScreenRatio = 4 / 3;
+    double tabletScreenRatio = 1;
     double marginWidth = 0.02;
     if (ratio > tabletScreenRatio) {
       marginWidth = 0.28;
@@ -24,7 +25,7 @@ class WeddingParty extends StatelessWidget {
     }
     return Container(
       //vertical and horizontal margins
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: MediaQuery.of(context).size.width * marginWidth),
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: width * marginWidth),
       padding: const EdgeInsets.symmetric(vertical: 16.0), //space inside the cards
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5),
@@ -38,6 +39,7 @@ class WeddingParty extends StatelessWidget {
           ),
           Container(
             height: 160.0,
+            width: width,
             child: Center(
               child: Scrollbar(
                 isAlwaysShown: true,

@@ -3,7 +3,7 @@ import 'package:tsu_and_angel/styles/opacity.dart';
 import 'dart:math';
 
 Widget backgroundImage(BuildContext context) {
-  double container_size = min(MediaQuery.of(context).size.height * 2, 1200);
+  double container_size = min(MediaQuery.of(context).size.height * 2, 1150);
   return Container(
     width: MediaQuery.of(context).size.width,
     color: Colors.white,
