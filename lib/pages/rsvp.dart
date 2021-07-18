@@ -28,7 +28,6 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
         ),
         Stack(
           children: <Widget>[
-            backgroundImage(context),
             Positioned.fill(
                 child: Center(
               child: Container(

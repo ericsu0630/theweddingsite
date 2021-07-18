@@ -64,7 +64,7 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 32.0),
       child: Stack(
         children: <Widget>[
-          backgroundImage(context),
+          backgroundImage1(context),
           Column(
             children: [
               FadeTransition(

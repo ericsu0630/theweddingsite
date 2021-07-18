@@ -58,11 +58,11 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
     return Container(
       child: Stack(
         children: <Widget>[
-          backgroundImage(context),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FadeTransition(
+          backgroundImage1(context),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: FadeTransition(
                 opacity: _titleAnimation,
                 child: ContentCard(
                   titleText: 'Covid Safety',
@@ -77,8 +77,8 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-            ],
-          )
+            ),
+          ),
         ],
       ),
     );
