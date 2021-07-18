@@ -61,35 +61,42 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
 
   Widget splashScreen() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 32.0),
       child: Stack(
         children: <Widget>[
           backgroundImage1(context),
-          Column(
-            children: [
-              FadeTransition(
-                opacity: _titleAnimation,
-                child: ContentCard(
-                  titleText: 'Accommodation',
-                  contentList: [
-                    Text(
-                      text_1,
-                      style: MyFonts.contentText,
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 32.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    FadeTransition(
+                      opacity: _titleAnimation,
+                      child: ContentCard(
+                        titleText: 'Accommodation',
+                        contentList: [
+                          Text(
+                            text_1,
+                            style: MyFonts.contentText,
+                          ),
+                        ],
+                      ),
+                    ),
+                    FadeTransition(
+                      opacity: _titleAnimation,
+                      child: ContentCard(
+                        titleText: 'Directions',
+                        contentList: [
+                          MyGoogleMap(),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-              FadeTransition(
-                opacity: _titleAnimation,
-                child: ContentCard(
-                  titleText: 'Directions',
-                  contentList: [
-                    MyGoogleMap(),
-                  ],
-                ),
-              ),
-            ],
-          )
+            ),
+          ),
         ],
       ),
     );
