@@ -61,12 +61,11 @@ class _TipsPageState extends State<TipsPage> with TickerProviderStateMixin {
 
   Widget splashScreen() {
     return Container(
+      padding: const EdgeInsets.symmetric(vertical: 32.0),
       child: Stack(
         children: <Widget>[
           backgroundImage(context),
-          ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(vertical: 32.0),
+          Column(
             children: [
               FadeTransition(
                 opacity: _titleAnimation,
