@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
+                                AutoSizeText(
                                   'More',
                                   style: MyFonts.buttonText,
                                 ),
@@ -132,15 +133,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   backgroundImage(context),
                   Container(
-                    height: MediaQuery.of(context).size.height - 64,
+                    height: MediaQuery.of(context).size.height * 2,
                     child: Center(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           ContentCard(
                             titleText: 'Date / Time',
                             contentList: [
-                              Text(
+                              AutoSizeText(
                                 date_time_string,
                                 style: MyFonts.contentText,
                               ),
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ContentCard(
                             titleText: 'Venue',
                             contentList: [
-                              Text(
+                              AutoSizeText(
                                 venue_string,
                                 style: MyFonts.contentText,
                               ),
@@ -218,48 +219,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 imagePath: 'assets/images/avery.png',
                               ),
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          size: 36.0,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          scrollController.animateTo(MediaQuery.of(context).size.height * 2 - 128,
-                              //animation settings
-                              duration: Duration(milliseconds: 2000),
-                              curve: Curves.easeOutQuart);
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Stack(
-                children: <Widget>[
-                  backgroundImage(context),
-                  Container(
-                    height: MediaQuery.of(context).size.height - 64,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ContentCard(
-                            titleText: 'Program',
-                            contentList: [
-                              Text(
-                                program_string,
-                                style: MyFonts.contentText,
-                              ),
-                            ],
+                          ),
+                          Expanded(
+                            child: ContentCard(
+                              titleText: 'Program',
+                              contentList: [
+                                Expanded(
+                                  child: AutoSizeText(
+                                    program_string,
+                                    style: MyFonts.contentText,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

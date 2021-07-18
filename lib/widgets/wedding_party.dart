@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 
 class WeddingParty extends StatelessWidget {
@@ -31,7 +32,7 @@ class WeddingParty extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
+          AutoSizeText(
             'Wedding Party',
             style: MyFonts.contentTitleText,
           ),
