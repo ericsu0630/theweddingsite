@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
@@ -60,6 +61,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     String program_string =
         "14:00\nGuest arrival\nCeremony\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n20:00\nDance floor opens\n\n~22:00\nHome time! (estimated curfew)\n";
     String gps_link = "https://g.page/Belairweddings";
+    double container_size = min(MediaQuery.of(context).size.height * 2, 1200);
+
     return Container(
       height: MediaQuery.of(context).size.height - 64,
       child: Scrollbar(
@@ -133,10 +136,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   backgroundImage(context),
                   Container(
-                    height: MediaQuery.of(context).size.height * 2,
+                    height: container_size,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ContentCard(
                             titleText: 'Date / Time',

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/opacity.dart';
+import 'dart:math';
 
 Widget backgroundImage(BuildContext context) {
+  double container_size = min(MediaQuery.of(context).size.height * 2, 1200);
   return Container(
     width: MediaQuery.of(context).size.width,
     color: Colors.white,
-    height: MediaQuery.of(context).size.height * 2,
+    height: container_size,
     child: Column(
       children: [
         Expanded(
