@@ -154,7 +154,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ContentCard(
                             titleText: 'Venue',
                             contentList: [
-                              AutoSizeText(
+                              SelectableText(
+                                //in case someone wants to copy this
                                 venue_string,
                                 style: MyFonts.contentText,
                               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
-import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
-import 'package:tsu_and_angel/widgets/rsvp_form.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html';
+import 'dart:ui' as ui;
 
 class RsvpPage extends StatefulWidget {
   @override
@@ -11,10 +12,23 @@ class RsvpPage extends StatefulWidget {
 
 class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
   @override
+  void initState() {
+    super.initState();
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        'my_google_form',
+        (int viewId) => IFrameElement()
+          ..src =
+              'https://docs.google.com/forms/d/e/1FAIpQLScRSiBezvevmvAWelQLAROmCD73PUY28NFeuD_CKKfkbkMVHQ/viewform?usp=sf_link' //@Tsu URL for google form goes here
+          ..style.border = 'none');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: pageBody(),
       ),
     );
@@ -54,7 +68,10 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
                 ),
               ),
             )),
-            RsvpForm(),
+            Container(
+                height: MediaQuery.of(context).size.height - 64,
+                width: MediaQuery.of(context).size.width,
+                child: HtmlElementView(viewType: 'my_google_form')),
           ],
         ),
       ],
