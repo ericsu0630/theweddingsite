@@ -4,6 +4,7 @@ import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'dart:ui' as ui;
+import 'dart:io' show Platform;
 
 class RsvpPage extends StatefulWidget {
   @override
@@ -35,6 +36,10 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
   }
 
   Widget pageBody() {
+    double h = MediaQuery.of(context).size.height - 64;
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      h = 800;
+    }
     return Column(
       children: <Widget>[
         NavBar(
@@ -68,8 +73,9 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
                 ),
               ),
             )),
-            Container(
-                height: MediaQuery.of(context).size.height - 64,
+            AnimatedContainer(
+                duration: const Duration(milliseconds: 275),
+                height: h,
                 width: MediaQuery.of(context).size.width,
                 child: HtmlElementView(viewType: 'my_google_form')),
           ],
