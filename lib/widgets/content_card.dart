@@ -35,12 +35,10 @@ class ContentCard extends StatelessWidget {
         color: Colors.white.withOpacity(0.5), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
-      child: Flexible(
-          child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: contentList,
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: contentList,
       ),
     );
   }
