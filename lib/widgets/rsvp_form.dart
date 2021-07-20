@@ -26,6 +26,7 @@ class _RsvpFormState extends State<RsvpForm> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: AnimatedContainer(
+          padding: EdgeInsets.only(bottom: bottomOffset),
           height: MediaQuery.of(context).size.height - 64,
           width: MediaQuery.of(context).size.width,
           child: HtmlElementView(viewType: 'my_google_form')
