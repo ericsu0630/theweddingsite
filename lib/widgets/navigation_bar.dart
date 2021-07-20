@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/pages/home.dart';
+import 'package:tsu_and_angel/pages/todo.dart';
 import 'package:tsu_and_angel/pages/covid.dart';
 import 'package:tsu_and_angel/pages/rsvp.dart';
 import 'package:tsu_and_angel/pages/tips.dart';
@@ -34,8 +35,9 @@ class _NavBarState extends State<NavBar> {
             children: <Widget>[
               navBarItem('Welcome! ', 0),
               navBarItem('RSVP ', 1),
-              navBarItem('Tips', 2),
-              navBarItem('Covid Safety', 3),
+              navBarItem('Places to stay', 2),
+              navBarItem('Things to do', 3),
+              navBarItem('Covid Safety', 4),
             ],
           ),
         ),
@@ -72,6 +74,9 @@ class _NavBarState extends State<NavBar> {
               goToSelectedPage(TipsPage());
               break;
             case 3:
+              goToSelectedPage(TodoPage());
+              break;
+            case 4:
               goToSelectedPage(CovidPage());
               break;
           }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
@@ -45,7 +46,7 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             NavBar(
-              selectedPosition: 3,
+              selectedPosition: 4,
             ),
             splashScreen(),
           ],
@@ -67,11 +68,10 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
                 child: ContentCard(
                   titleText: 'Covid Safety',
                   contentList: [
-                    Text(
-                      "With the COVID-19 pandemic being a reality in our world, we’ve made few adjustments to ensure you are as safe from viral transmission as possible.\n\n\n "
-                      "We will have a hand sanitization station as well as a temperature check as you arrive. \n\n\n "
-                      "Where possible, we will attempt to seat guests from the same household or similar friends groups together and"
-                      " provide enough spacing between seats.",
+                    AutoSizeText(
+                      "With the COVID-19 pandemic being a reality in our world, we are committed to keeping our guests as safe from viral transmission as possible. There will be a mandatory hand sanitization station and temperature check upon arrival for all guests. Where possible, we will attempt to seat guests from the same household or similar friends groups together. \n\n "
+                      "Since the start of this pandemic, our lives have been plagued with uncertainties. Unfortunately our wedding is no different. With covid in the mix, this continues to be a fluid situation so please keep an eye on this website for any updates pertaining to our special day. \n\n "
+                      "If you have any questions or concerns, please do not hesitate to contact us.",
                       style: MyFonts.contentText,
                     ),
                   ],

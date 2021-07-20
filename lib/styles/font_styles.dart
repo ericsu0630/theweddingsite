@@ -3,13 +3,19 @@ import 'package:tsu_and_angel/styles/colors.dart';
 
 class MyFonts {
   static TextStyle contentTitleText = const TextStyle(
-    fontSize: 32.0,
+    fontSize: 28.0,
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w900,
     color: Colors.black87,
   );
   static TextStyle contentText = const TextStyle(
     fontSize: 18.0,
+    fontFamily: "DancingScript",
+    fontWeight: FontWeight.w600,
+    color: Colors.black54,
+  );
+  static TextStyle contentTextSubtitle = const TextStyle(
+    fontSize: 22.0,
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w600,
     color: Colors.black54,

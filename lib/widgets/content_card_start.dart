@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 
-class ContentCard extends StatelessWidget {
+class ContentCardStart extends StatelessWidget {
   final List<Widget> contentList;
   final String titleText;
-  const ContentCard({Key? key, required this.contentList, required this.titleText}) : super(key: key);
+  const ContentCardStart({Key? key, required this.contentList, required this.titleText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,10 @@ class ContentCard extends StatelessWidget {
         color: Colors.white.withOpacity(0.5), //opacity of the card
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
-      child: Flexible(
-          child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: contentList,
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: contentList,
       ),
     );
   }
