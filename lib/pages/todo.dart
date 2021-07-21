@@ -114,22 +114,6 @@ class _TodoPageState extends State<TodoPage> with TickerProviderStateMixin {
                             "Gin - Wilderer, Classic Cats, The Botanical Bar, The Gin Bar\nBeer - Cape Brewing Company, Wild Clover Farm, Stellenbaru Microbrewery, Craft Wheat and Hops, Tuk Tuk microbrewery (Franschhoek), Devil’s Peak\n",
                             style: MyFonts.contentText,
                           ),
-                          AutoSizeText(
-                            "Markets",
-                            style: MyFonts.contentTextSubtitle,
-                          ),
-                          AutoSizeText(
-                            "R44, Mojo, Lourensford (Sunday), Oranjezicht, VnA food market, Old Biscuit Mill, Boschendal (Friday)\n",
-                            style: MyFonts.contentText,
-                          ),
-                          // AutoSizeText(
-                          //   "Miscellaneous",
-                          //   style: MyFonts.contentTextSubtitle,
-                          // ),
-                          // AutoSizeText(
-                          //   "Hiking - (time to work off all that food you’ll be eating at the wedding!) - there are too many to list, contact us for some suggestions you’re interested :)\n Other - Kirstenbosch Botanical Gardens, Bo-Kaap, Penguins at Boulders Bay (Simons Town), Kalk Bay, Cape Point\n",
-                          //   style: MyFonts.contentText,
-                          // ),
                         ],
                       ),
                     ),

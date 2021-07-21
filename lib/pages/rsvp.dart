@@ -38,7 +38,7 @@ class _RsvpPageState extends State<RsvpPage> with TickerProviderStateMixin {
   Widget pageBody() {
     double h = MediaQuery.of(context).size.height - 64;
     if (Theme.of(context).platform == TargetPlatform.iOS) {
-      h = 800;
+      h = 900;
     }
     return Column(
       children: <Widget>[

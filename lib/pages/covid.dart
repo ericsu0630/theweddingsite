@@ -59,20 +59,51 @@ class _CovidPageState extends State<CovidPage> with TickerProviderStateMixin {
     return Container(
       child: Stack(
         children: <Widget>[
-          backgroundImage1(context),
+          backgroundImage(context),
           Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: FadeTransition(
-                opacity: _titleAnimation,
-                child: ContentCard(
-                  titleText: 'Covid Safety',
-                  contentList: [
-                    AutoSizeText(
-                      "With the COVID-19 pandemic being a reality in our world, we are committed to keeping our guests as safe from viral transmission as possible. There will be a mandatory hand sanitization station and temperature check upon arrival for all guests. Where possible, we will attempt to seat guests from the same household or similar friends groups together. \n\n "
-                      "Since the start of this pandemic, our lives have been plagued with uncertainties. Unfortunately our wedding is no different. With covid in the mix, this continues to be a fluid situation so please keep an eye on this website for any updates pertaining to our special day. \n\n "
-                      "If you have any questions or concerns, please do not hesitate to contact us.",
-                      style: MyFonts.contentText,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 32.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    FadeTransition(
+                      opacity: _titleAnimation,
+                      child: ContentCard(
+                        titleText: 'Covid Safety',
+                        contentList: [
+                          AutoSizeText(
+                            "With the COVID-19 pandemic being a reality in our world, we are committed to keeping our guests as safe from viral transmission as possible. There will be a mandatory hand sanitization station and temperature check upon arrival for all guests. Where possible, we will attempt to seat guests from the same household or similar friends groups together. \n\n "
+                            "Since the start of this pandemic, our lives have been plagued with uncertainties. Unfortunately our wedding is no different. With covid in the mix, this continues to be a fluid situation so please keep an eye on this website for any updates pertaining to our special day. \n\n "
+                            "If you have any questions or concerns, please do not hesitate to contact us.",
+                            style: MyFonts.contentText,
+                          ),
+                        ],
+                      ),
+                    ),
+                    FadeTransition(
+                      opacity: _titleAnimation,
+                      child: ContentCard(
+                        titleText: "Y'ello!",
+                        contentList: [
+                          AutoSizeText(
+                            "Thank you for being interested and making it this far! As a reward for your tenacity (unfortunately, this will only benefit the out of towners), here are some additional tips and todos!",
+                            style: MyFonts.contentText,
+                          ),
+                          AutoSizeText(
+                            "Markets and more",
+                            style: MyFonts.contentTextSubtitle,
+                          ),
+                          AutoSizeText(
+                            "R44, Mojo, Lourensford (Sunday), Oranjezicht, VnA food market, Old Biscuit Mill, Boschendal (Friday)\n",
+                            style: MyFonts.contentText,
+                          ),
+                          AutoSizeText(
+                            "Hiking - (time to work off all that food you’ll be eating at the wedding!) - there are too many to list, contact us for some suggestions you’re interested :)\n Other - Kirstenbosch Botanical Gardens, Bo-Kaap, Penguins at Boulders Bay (Simons Town), Kalk Bay, Cape Point\n",
+                            style: MyFonts.contentText,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
