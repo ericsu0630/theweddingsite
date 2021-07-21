@@ -122,14 +122,14 @@ class _TodoPageState extends State<TodoPage> with TickerProviderStateMixin {
                             "R44, Mojo, Lourensford (Sunday), Oranjezicht, VnA food market, Old Biscuit Mill, Boschendal (Friday)\n",
                             style: MyFonts.contentText,
                           ),
-                          AutoSizeText(
-                            "Miscellaneous",
-                            style: MyFonts.contentTextSubtitle,
-                          ),
-                          AutoSizeText(
-                            "Hiking - (time to work off all that food you’ll be eating at the wedding!) - there are too many to list, contact us for some suggestions you’re interested :)\n Other - Kirstenbosch Botanical Gardens, Bo-Kaap, Penguins at Boulders Bay (Simons Town), Kalk Bay, Cape Point\n",
-                            style: MyFonts.contentText,
-                          ),
+                          // AutoSizeText(
+                          //   "Miscellaneous",
+                          //   style: MyFonts.contentTextSubtitle,
+                          // ),
+                          // AutoSizeText(
+                          //   "Hiking - (time to work off all that food you’ll be eating at the wedding!) - there are too many to list, contact us for some suggestions you’re interested :)\n Other - Kirstenbosch Botanical Gardens, Bo-Kaap, Penguins at Boulders Bay (Simons Town), Kalk Bay, Cape Point\n",
+                          //   style: MyFonts.contentText,
+                          // ),
                         ],
                       ),
                     ),
