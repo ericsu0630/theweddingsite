@@ -17,10 +17,10 @@ class ContentCard extends StatelessWidget {
     double tabletScreenRatio = 4 / 3;
     double marginWidth = 0.02;
     if (ratio > tabletScreenRatio) {
-      marginWidth = 0.28;
+      marginWidth = 0.35;
     }
     if (ratio > pcScreenRatio) {
-      marginWidth = 0.33;
+      marginWidth = 0.4;
     }
 
     contentList.insert(0, SizedBox(height: 16.0));
