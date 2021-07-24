@@ -9,9 +9,10 @@ class MyFonts {
     fontWeight: FontWeight.w900,
     color: Colors.black87,
   );
-  static TextStyle contentText = const TextStyle(
+  //https://pub.dev/packages/google_fonts
+  //https://fonts.google.com/
+  static TextStyle contentText = GoogleFonts.caveat(
     fontSize: 18.0,
-    fontFamily: "DancingScript",
     fontWeight: FontWeight.w600,
     color: Colors.black54,
   );
@@ -38,14 +39,5 @@ class MyFonts {
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w900,
     color: Colors.white,
-  );
-
-  //https://pub.dev/packages/google_fonts
-  //https://fonts.google.com/
-  static TextStyle googleFont = GoogleFonts.lato(
-    fontSize: 48,
-    fontWeight: FontWeight.w700,
-    fontStyle: FontStyle.italic,
-    color: Colors.black54,
   );
 }
