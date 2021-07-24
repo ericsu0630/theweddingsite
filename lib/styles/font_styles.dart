@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
 class MyFonts {
@@ -37,5 +38,14 @@ class MyFonts {
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w900,
     color: Colors.white,
+  );
+
+  //https://pub.dev/packages/google_fonts
+  //https://fonts.google.com/
+  static TextStyle googleFont = GoogleFonts.lato(
+    fontSize: 48,
+    fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.italic,
+    color: Colors.black54,
   );
 }
