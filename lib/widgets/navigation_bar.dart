@@ -31,7 +31,7 @@ class _NavBarState extends State<NavBar> {
 
   void scrollToSelectedPosition() {
     //scroll to the end of the navbar if 4th or 5th item is selected
-    if (selected >= 3) scrollController.animateTo(500, duration: Duration(milliseconds: 1), curve: Curves.ease);
+    if (selected >= 3) scrollController.animateTo(200, duration: Duration(milliseconds: 1), curve: Curves.linear);
   }
 
   @override
