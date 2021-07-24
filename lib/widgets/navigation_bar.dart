@@ -17,9 +17,22 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int selected = 0;
+  ScrollController scrollController = ScrollController();
+  List<String> titles = ['Welcome!', 'RSVP', 'Places to stay', 'Things to do', 'Covid Safety'];
   _NavBarState(int selected) {
     this.selected = selected;
   }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) => scrollToSelectedPosition());
+  }
+
+  void scrollToSelectedPosition() {
+    if (selected >= 3) scrollController.animateTo(500, duration: Duration(milliseconds: 1), curve: Curves.ease);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,19 +40,14 @@ class _NavBarState extends State<NavBar> {
       color: Colors.white,
       height: 64,
       child: Center(
-        child: SingleChildScrollView(
+        child: ListView.builder(
+          controller: scrollController,
+          shrinkWrap: true,
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return navBarItem(index);
+          },
           scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              navBarItem('Welcome! ', 0),
-              navBarItem('RSVP ', 1),
-              navBarItem('Places to stay', 2),
-              navBarItem('Things to do', 3),
-              navBarItem('Covid Safety', 4),
-            ],
-          ),
         ),
       ),
     );
@@ -57,10 +65,9 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
-  Widget navBarItem(String title, int position) {
+  Widget navBarItem(int position) {
     return GestureDetector(
       onTap: () {
-        print('$title tapped');
         if (selected != position) {
           selected = position;
           switch (position) {
@@ -93,14 +100,16 @@ class _NavBarState extends State<NavBar> {
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: AutoSizeText(
-          title,
-          maxLines: 1,
-          style: TextStyle(
-            fontSize: 23,
-            color: Palette.primary,
-            fontFamily: 'DancingScript',
-            fontWeight: FontWeight.bold,
+        child: Center(
+          child: AutoSizeText(
+            titles[position],
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 23,
+              color: Palette.primary,
+              fontFamily: 'DancingScript',
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
