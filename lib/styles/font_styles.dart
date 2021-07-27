@@ -11,8 +11,8 @@ class MyFonts {
   );
   //https://pub.dev/packages/google_fonts
   //https://fonts.google.com/
-  static TextStyle contentText = GoogleFonts.caveat(
-    fontSize: 18.0,
+  static TextStyle contentText = GoogleFonts.cookie(
+    fontSize: 20.0,
     fontWeight: FontWeight.w600,
     color: Colors.black54,
   );
