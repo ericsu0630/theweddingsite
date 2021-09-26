@@ -18,7 +18,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int selected = 0;
   ScrollController scrollController = ScrollController();
-  List<String> titles = ['Welcome!', 'RSVP', 'Places to stay', 'Things to do', 'Covid Safety'];
+  List<String> titles = ['Welcome!', 'Menu', 'Places to stay', 'Things to do', 'Covid Safety'];
   _NavBarState(int selected) {
     this.selected = selected;
   }
