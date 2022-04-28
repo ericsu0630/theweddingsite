@@ -7,6 +7,8 @@ import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 import 'package:tsu_and_angel/widgets/wedding_party.dart';
 
+import 'gallery.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,8 +22,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _titleAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), value: 0, lowerBound: 0, upperBound: 1, vsync: this);
+    _titleAnimationController =
+        AnimationController(duration: const Duration(milliseconds: 1000), value: 0, lowerBound: 0, upperBound: 1, vsync: this);
     _titleAnimation = CurvedAnimation(parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
     _titleAnimationController.forward();
   }
@@ -42,9 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget pageBody() {
     return Column(
       children: <Widget>[
-        NavBar(
-          selectedPosition: 0,
-        ),
+        NavBar(selectedPosition: 0),
         pageContent(),
       ],
     );
@@ -60,7 +60,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     String venue_string = "Belair Pavilion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357";
     String program_string =
         "14:00\nGuest arrival\nCeremony\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n20:00\nDance floor opens\n\n~22:00\nHome time!\n";
-    String gps_link = "https://g.page/Belairweddings";
     double container_size = min(MediaQuery.of(context).size.height * 2, 1150);
 
     return Container(
@@ -84,28 +83,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   Positioned.fill(
-                    bottom: 40.0,
+                    bottom: 10.0,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: FadeTransition(
                         opacity: _titleAnimation,
-                        child: OutlinedButton(
+                        child: TextButton(
                           //RSVP button styling
-                          style: OutlinedButton.styleFrom(
-                            primary: Colors.white,
-                            backgroundColor: Colors.black26.withOpacity(0.2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0),
-                            ),
-                            side: BorderSide(color: Colors.white, width: 2.0),
-                          ),
                           child: Container(
-                            padding: const EdgeInsets.only(
-                              top: 8.0,
-                              bottom: 8.0,
-                              left: 16.0,
-                            ),
-                            child: Row(
+                            child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 AutoSizeText(
@@ -125,6 +111,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 //animation settings
                                 duration: Duration(milliseconds: 2000),
                                 curve: Curves.easeOutQuart);
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    bottom: 120.0,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: FadeTransition(
+                        opacity: _titleAnimation,
+                        child: OutlinedButton(
+                          //Gallery button styling
+                          style: OutlinedButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.black26.withOpacity(0.2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32.0),
+                            ),
+                            side: BorderSide(color: Colors.white, width: 2.0),
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                              vertical: 8.0,
+                            ),
+                            child: AutoSizeText(
+                              'Gallery',
+                              style: MyFonts.buttonText,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => GalleryPage()));
                           },
                         ),
                       ),

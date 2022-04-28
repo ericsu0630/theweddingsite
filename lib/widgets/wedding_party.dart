@@ -45,6 +45,7 @@ class WeddingParty extends StatelessWidget {
                 isAlwaysShown: true,
                 controller: scroll_controller,
                 child: ListView(
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   children: memberList,
