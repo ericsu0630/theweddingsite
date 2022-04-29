@@ -44,7 +44,7 @@ class _GalleryPageState extends State<GalleryPage> {
     Reference fileRef = storageRef.child("Final photo resized");
 
     //load the next 50 images using pageToken as a 'bookmark'
-    ListResult listResult = await fileRef.list(ListOptions(maxResults: 30, pageToken: pageToken));
+    ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
 
     //update the pageToken
     pageToken = listResult.nextPageToken;
@@ -75,7 +75,16 @@ class _GalleryPageState extends State<GalleryPage> {
         key: ValueKey(url),
         filterQuality: FilterQuality.medium,
       );
-      image.image.resolve(ImageConfiguration()); //need to the resolve the image before precaching it
+
+      //i think this code below fixed the shuffling problem?
+      image.image.resolve(ImageConfiguration()).addListener(
+        ImageStreamListener(
+          (info, call) {
+            print('image height: ${info.image.height}');
+          },
+        ),
+      );
+
       precacheImage(image.image, context);
       await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
       imageList.add(image);
@@ -117,7 +126,6 @@ class _GalleryPageState extends State<GalleryPage> {
         children: [
           if (imageList.isNotEmpty)
             MasonryGridView.count(
-              cacheExtent: 500, //cache 500 pixels before and after the viewport
               controller: scrollController,
               itemCount: imageList.length,
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
