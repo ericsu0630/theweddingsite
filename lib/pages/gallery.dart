@@ -14,8 +14,8 @@ class GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
-  ValueNotifier<List<Image>> imageList = ValueNotifier([]);
-  ValueNotifier<bool> showLoading = ValueNotifier(true);
+  List<Image> imageList = [];
+  bool showLoading = true;
   bool endOfListReached = false;
   bool initialized = false;
   String? pageToken;
@@ -38,20 +38,22 @@ class _GalleryPageState extends State<GalleryPage> {
 
   Future<void> fetchData() async {
     if (endOfListReached) return;
-    showLoading.value = true;
+    showLoading = true;
+    setState(() {});
     //create a file reference to the firebase cloud storage folder
-    Reference fileRef = storageRef.child("Eric test photos");
+    Reference fileRef = storageRef.child("Final photo resized");
 
     //load the next 50 images using pageToken as a 'bookmark'
-    ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
+    ListResult listResult = await fileRef.list(ListOptions(maxResults: 30, pageToken: pageToken));
 
-    //update the 'bookmark'
+    //update the pageToken
     pageToken = listResult.nextPageToken;
 
     if (pageToken == null && initialized) {
-      showLoading.value = false;
+      showLoading = false;
       endOfListReached = true;
       console.log("end of image list");
+      setState(() {});
       return;
     }
 
@@ -68,17 +70,22 @@ class _GalleryPageState extends State<GalleryPage> {
     List<String> imgUrls = await Future.wait(imgUrlFutures);
 
     for (String url in imgUrls) {
-      Image image = Image.network(url, filterQuality: FilterQuality.medium);
+      Image image = Image.network(
+        url,
+        key: ValueKey(url),
+        filterQuality: FilterQuality.medium,
+      );
+      image.image.resolve(ImageConfiguration()); //need to the resolve the image before precaching it
       precacheImage(image.image, context);
-      await Future.delayed(Duration(milliseconds: 150)); //give some time for each image to precache
-      imageList.value.add(image);
+      await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
+      imageList.add(image);
       setState(() {});
     }
 
     //update the UI
     if (imgUrls.isNotEmpty) {
-      console.log("total number of images loaded: ${imageList.value.length.toString()}");
-      showLoading.value = false;
+      print("total number of images loaded: ${imageList.length.toString()}");
+      showLoading = false;
       initialized = true;
       setState(() {});
     }
@@ -106,44 +113,27 @@ class _GalleryPageState extends State<GalleryPage> {
           ),
         ),
       ),
-      body: pageBody(),
+      body: Stack(
+        children: [
+          if (imageList.isNotEmpty)
+            MasonryGridView.count(
+              cacheExtent: 500, //cache 500 pixels before and after the viewport
+              controller: scrollController,
+              itemCount: imageList.length,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              // the number of columns
+              crossAxisCount: 6,
+              // vertical gap between two items
+              mainAxisSpacing: 16,
+              // horizontal gap between two items
+              crossAxisSpacing: 16,
+              itemBuilder: (context, index) {
+                return imageList[index];
+              },
+            ),
+          showLoading ? Center(child: CircularProgressIndicator(color: Palette.primary)) : Container(),
+        ],
+      ),
     );
-  }
-
-  Widget pageBody() {
-    return ValueListenableBuilder(
-        valueListenable: imageList,
-        builder: (context, List<dynamic> imageList, _) {
-          return Stack(
-            children: [
-              if (imageList.isNotEmpty)
-                MasonryGridView.count(
-                  cacheExtent: 500, //cache 500 pixels before and after the viewport
-                  controller: scrollController,
-                  itemCount: imageList.length,
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  // the number of columns
-                  crossAxisCount: 6,
-                  // vertical gap between two items
-                  mainAxisSpacing: 16,
-                  // horizontal gap between two items
-                  crossAxisSpacing: 16,
-                  itemBuilder: (context, index) {
-                    return imageList[index];
-                  },
-                ),
-              ValueListenableBuilder(
-                valueListenable: showLoading,
-                builder: (context, bool showLoading, _) {
-                  if (showLoading) {
-                    return Center(child: CircularProgressIndicator(color: Palette.primary));
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-            ],
-          );
-        });
   }
 }
