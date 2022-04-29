@@ -3,7 +3,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
-import 'dart:math' as math;
 import 'dart:developer' as console;
 
 class GalleryPage extends StatefulWidget {
@@ -15,7 +14,7 @@ class GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
-  ValueNotifier<List<dynamic>> imageList = ValueNotifier([]);
+  ValueNotifier<List<Image>> imageList = ValueNotifier([]);
   ValueNotifier<bool> showLoading = ValueNotifier(true);
   bool endOfListReached = false;
   bool initialized = false;
@@ -66,11 +65,18 @@ class _GalleryPageState extends State<GalleryPage> {
     }
 
     //fetch all 50 image URLs concurrently
-    List<String> imgUrlList = await Future.wait(imgUrlFutures);
+    List<String> imgUrls = await Future.wait(imgUrlFutures);
+
+    for (String url in imgUrls) {
+      Image image = Image.network(url, filterQuality: FilterQuality.medium);
+      precacheImage(image.image, context);
+      await Future.delayed(Duration(milliseconds: 150)); //give some time for each image to precache
+      imageList.value.add(image);
+      setState(() {});
+    }
 
     //update the UI
-    if (imgUrlList.isNotEmpty) {
-      imageList.value += imgUrlList;
+    if (imgUrls.isNotEmpty) {
       console.log("total number of images loaded: ${imageList.value.length.toString()}");
       showLoading.value = false;
       initialized = true;
@@ -111,33 +117,31 @@ class _GalleryPageState extends State<GalleryPage> {
           return Stack(
             children: [
               if (imageList.isNotEmpty)
-                MasonryGridView.builder(
+                MasonryGridView.count(
+                  cacheExtent: 500, //cache 500 pixels before and after the viewport
                   controller: scrollController,
                   itemCount: imageList.length,
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   // the number of columns
-                  gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
+                  crossAxisCount: 6,
                   // vertical gap between two items
                   mainAxisSpacing: 16,
                   // horizontal gap between two items
                   crossAxisSpacing: 16,
                   itemBuilder: (context, index) {
-                    return Container(color: Colors.grey, height: (math.Random().nextDouble() * 500) + 200);
-                    return Image.network(
-                      imageList[index],
-                      filterQuality: FilterQuality.medium,
-                    );
+                    return imageList[index];
                   },
                 ),
               ValueListenableBuilder(
-                  valueListenable: showLoading,
-                  builder: (context, bool showLoading, _) {
-                    if (showLoading) {
-                      return Center(child: CircularProgressIndicator(color: Palette.primary));
-                    } else {
-                      return Container();
-                    }
-                  }),
+                valueListenable: showLoading,
+                builder: (context, bool showLoading, _) {
+                  if (showLoading) {
+                    return Center(child: CircularProgressIndicator(color: Palette.primary));
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
             ],
           );
         });
