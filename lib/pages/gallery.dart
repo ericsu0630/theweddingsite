@@ -3,6 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
+import 'dart:math' as math;
+import 'dart:developer' as console;
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
@@ -15,65 +17,44 @@ class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
   ValueNotifier<List<dynamic>> imageList = ValueNotifier([]);
   ValueNotifier<bool> showLoading = ValueNotifier(true);
+  bool endOfListReached = false;
+  bool initialized = false;
   String? pageToken;
   Reference storageRef = FirebaseStorage.instance.ref();
 
   @override
   void initState() {
     //load the first batch of images
-    fetchInitialData();
+    fetchData();
 
     //keeps track of where the user is scrolling
     scrollController.addListener(() {
       if (scrollController.offset == scrollController.position.maxScrollExtent) {
         //load more images when bottom of page is reached
-        fetchMoreData();
+        fetchData();
       }
     });
     super.initState();
   }
 
-  void fetchInitialData() async {
-    //create a file reference to the firebase cloud storage folder
-    Reference fileRef = storageRef.child("Wedding photos original");
-
-    //load the first 50 images
-    ListResult listResult = await fileRef.list(ListOptions(maxResults: 50));
-
-    //keep track of how many 'pages' have been loaded
-    pageToken = listResult.nextPageToken;
-
-    //the actual list of image data returned from firebase
-    List<Reference> imageReferences = listResult.items;
-
-    //build list of references to fetch image download URL
-    List<Future<String>> imgUrlFutures = List.empty(growable: true);
-    for (Reference imageReference in imageReferences) {
-      imgUrlFutures.add(imageReference.getDownloadURL());
-    }
-
-    //fetches all 50 image URLs concurrently
-    List<String> imgUrlList = await Future.wait(imgUrlFutures);
-
-    //update the UI
-    imageList.value = imgUrlList;
-
-    //hide loading indicator once data has been confirmed
-    if (imageList.value.isNotEmpty) {
-      showLoading.value = false;
-    }
-  }
-
-  Future<void> fetchMoreData() async {
+  Future<void> fetchData() async {
+    if (endOfListReached) return;
     showLoading.value = true;
     //create a file reference to the firebase cloud storage folder
-    Reference fileRef = storageRef.child("Wedding photos original");
+    Reference fileRef = storageRef.child("Eric test photos");
 
     //load the next 50 images using pageToken as a 'bookmark'
     ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
 
     //update the 'bookmark'
     pageToken = listResult.nextPageToken;
+
+    if (pageToken == null && initialized) {
+      showLoading.value = false;
+      endOfListReached = true;
+      console.log("end of image list");
+      return;
+    }
 
     //the actual list of image data returned from firebase
     List<Reference> imageReferences = listResult.items;
@@ -90,7 +71,9 @@ class _GalleryPageState extends State<GalleryPage> {
     //update the UI
     if (imgUrlList.isNotEmpty) {
       imageList.value += imgUrlList;
+      console.log("total number of images loaded: ${imageList.value.length.toString()}");
       showLoading.value = false;
+      initialized = true;
       setState(() {});
     }
   }
@@ -128,20 +111,21 @@ class _GalleryPageState extends State<GalleryPage> {
           return Stack(
             children: [
               if (imageList.isNotEmpty)
-                MasonryGridView.count(
+                MasonryGridView.builder(
                   controller: scrollController,
                   itemCount: imageList.length,
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   // the number of columns
-                  crossAxisCount: 6,
+                  gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
                   // vertical gap between two items
                   mainAxisSpacing: 16,
                   // horizontal gap between two items
                   crossAxisSpacing: 16,
                   itemBuilder: (context, index) {
+                    return Container(color: Colors.grey, height: (math.Random().nextDouble() * 500) + 200);
                     return Image.network(
                       imageList[index],
-                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.medium,
                     );
                   },
                 ),
