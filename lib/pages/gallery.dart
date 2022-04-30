@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
+import 'dart:io';
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
@@ -44,10 +45,10 @@ class _GalleryPageState extends State<GalleryPage> {
     Reference fileRef = storageRef.child("Final photo resized");
 
     //load the next 50 images using pageToken as a 'bookmark'
-    ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
+    // ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
 
     //update the pageToken
-    pageToken = listResult.nextPageToken;
+    // pageToken = listResult.nextPageToken;
 
     if (pageToken == null && initialized) {
       showLoading = false;
@@ -58,16 +59,25 @@ class _GalleryPageState extends State<GalleryPage> {
     }
 
     //the actual list of image data returned from firebase
-    List<Reference> imageReferences = listResult.items;
+    // List<Reference> imageReferences = listResult.items;
 
     //build list of references to fetch image download URL
-    List<Future<String>> imgUrlFutures = List.empty(growable: true);
-    for (Reference imageReference in imageReferences) {
-      imgUrlFutures.add(imageReference.getDownloadURL());
-    }
+    // List<Future<String>> imgUrlFutures = List.empty(growable: true);
+    // for (Reference imageReference in imageReferences) {
+      // imgUrlFutures.add(imageReference.getDownloadURL());
+    // }
 
     //fetch all 50 image URLs concurrently
-    List<String> imgUrls = await Future.wait(imgUrlFutures);
+    // List<String> imgUrls = await Future.wait(imgUrlFutures);
+
+    // Override for local development - remove later
+    List<String> imgUrls = List.empty(growable: true);
+    var photoDir = Directory("./assets/photos/");
+    await for (var entity in
+        photoDir.list(recursive: true, followLinks: false)) {
+      imgUrls.add(entity.path);
+      print(entity.path);
+    }
 
     for (String url in imgUrls) {
       Image image = Image.network(
