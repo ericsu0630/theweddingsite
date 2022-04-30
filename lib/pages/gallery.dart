@@ -112,6 +112,14 @@ class _GalleryPageState extends State<GalleryPage> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+
+    int crossAxisCount = (deviceWidth / 300).round().toInt();
+    if (crossAxisCount < 2) {
+      crossAxisCount = 2;
+    } else if (crossAxisCount > 6) {
+      crossAxisCount = 6;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -140,13 +148,17 @@ class _GalleryPageState extends State<GalleryPage> {
               itemCount: imageList.length,
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               // the number of columns
-              crossAxisCount: 6,
+              crossAxisCount: crossAxisCount,
               // vertical gap between two items
               mainAxisSpacing: 16,
               // horizontal gap between two items
               crossAxisSpacing: 16,
               itemBuilder: (context, index) {
-                return imageList[index];
+                return GestureDetector(
+                    onTap: () {
+                      print('photo');
+                    },
+                    child: imageList[index]);
               },
             ),
           showLoading ? Center(child: CircularProgressIndicator(color: Palette.primary)) : Container(),
