@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
-import 'dart:io';
-import 'package:yaml/yaml.dart';
-
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
 
@@ -43,7 +40,7 @@ class _GalleryPageState extends State<GalleryPage> {
     // showLoading = true;
     setState(() {});
     //create a file reference to the firebase cloud storage folder
-    Reference fileRef = storageRef.child("Final photo resized");
+    //Reference fileRef = storageRef.child("Final photo resized");
 
     //load the next 50 images using pageToken as a 'bookmark'
     // ListResult listResult = await fileRef.list(ListOptions(maxResults: 50, pageToken: pageToken));
@@ -65,7 +62,7 @@ class _GalleryPageState extends State<GalleryPage> {
     //build list of references to fetch image download URL
     // List<Future<String>> imgUrlFutures = List.empty(growable: true);
     // for (Reference imageReference in imageReferences) {
-      // imgUrlFutures.add(imageReference.getDownloadURL());
+    // imgUrlFutures.add(imageReference.getDownloadURL());
     // }
 
     //fetch all 50 image URLs concurrently
@@ -74,8 +71,8 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (int i=0; i < 229; i++) {
-      imgUrls.add("assets/photos/TSU-SHIUAN & ANGEL - BELAIR WEDDING (${i}).jpg");
+    for (int i = 0; i < 229; i++) {
+      imgUrls.add("photos/TSU-SHIUAN\ \&\ ANGEL\ -\ ELAIR\ WEDDING\ (${i + 1}).jpg");
     }
 
     for (String url in imgUrls) {
