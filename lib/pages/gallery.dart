@@ -155,32 +155,34 @@ class _GalleryPageState extends State<GalleryPage> {
               crossAxisSpacing: 16,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                    onTap: () {
-                      print('photo $index tapped');
-                      showDialog(
-                        context: context,
-                        builder: (_) => Dialog(
-                          insetPadding: const EdgeInsets.all(16.0),
-                          child: Stack(
-                            children: [
-                              GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
-                              IconButton(
-                                onPressed: () => Navigator.pop(context),
-                                icon: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Icon(
-                                    Icons.arrow_back_rounded,
-                                    size: 32.0,
-                                    color: Colors.white,
-                                  ),
+                  child: imageList[index],
+                  onTap: () {
+                    //todo run a method that downloads full res photo
+                    print('photo $index tapped');
+                    showDialog(
+                      context: context,
+                      builder: (_) => Dialog(
+                        insetPadding: const EdgeInsets.all(16.0),
+                        child: Stack(
+                          children: [
+                            GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Icon(
+                                  Icons.arrow_back_rounded,
+                                  size: 32.0,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                    child: imageList[index]);
+                      ),
+                    );
+                  },
+                );
               },
             ),
           showLoading ? Center(child: CircularProgressIndicator(color: Palette.primary)) : Container(),
