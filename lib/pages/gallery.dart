@@ -86,22 +86,20 @@ class _GalleryPageState extends State<GalleryPage> {
 
       //i think this code below fixed the shuffling problem?
 
-      double aspectRatio = 0.0;
-      image.image.resolve(ImageConfiguration());
       image.image.resolve(ImageConfiguration()).addListener(
         ImageStreamListener(
           (info, call) {
-            aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
-            print(aspectRatio.toString());
+            double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
+            imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
+            showLoading = false;
+            setState(() {});
           },
         ),
       );
 
       //precacheImage(image.image, context);
-      await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
-      imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
-      showLoading = false;
-      setState(() {});
+      //await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
+
     }
 
     //update the UI
