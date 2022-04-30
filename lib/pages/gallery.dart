@@ -28,7 +28,7 @@ class _GalleryPageState extends State<GalleryPage> {
 
     //keeps track of where the user is scrolling
     scrollController.addListener(() {
-      if (scrollController.offset == scrollController.position.maxScrollExtent) {
+      if (scrollController.offset >= scrollController.position.maxScrollExtent - 300) {
         //load more images when bottom of page is reached
         fetchData();
       }
