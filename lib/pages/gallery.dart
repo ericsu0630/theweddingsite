@@ -14,7 +14,7 @@ class GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
-  List<Image> imageList = [];
+  List<Widget> imageList = [];
   bool showLoading = true;
   bool endOfListReached = false;
   bool initialized = false;
@@ -81,21 +81,25 @@ class _GalleryPageState extends State<GalleryPage> {
         url,
         key: ValueKey(url),
         filterQuality: FilterQuality.medium,
+        fit: BoxFit.fill,
       );
 
       //i think this code below fixed the shuffling problem?
+
+      double aspectRatio = 0.0;
+      image.image.resolve(ImageConfiguration());
       image.image.resolve(ImageConfiguration()).addListener(
         ImageStreamListener(
           (info, call) {
-            print('HEIGHT: ${info.image.height}');
-            print('WIDTH ${info.image.width}');
+            aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
+            print(aspectRatio.toString());
           },
         ),
       );
 
       //precacheImage(image.image, context);
       await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
-      imageList.add(image);
+      imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
       showLoading = false;
       setState(() {});
     }
