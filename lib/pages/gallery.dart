@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
 import 'dart:io';
+import 'package:yaml/yaml.dart';
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
@@ -72,15 +73,13 @@ class _GalleryPageState extends State<GalleryPage> {
 
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
-    var photoDir = Directory("./assets/photos/");
-    await for (var entity in
-        photoDir.list(recursive: true, followLinks: false)) {
-      imgUrls.add(entity.path);
-      print(entity.path);
+
+    for (i=0; i< 229; i++) {
+      imgUrls.add("TSU-SHIUAN & ANGEL - BELAIR WEDDING (${i}).jpg");
     }
 
     for (String url in imgUrls) {
-      Image image = Image.network(
+      Image image = Image.asset(
         url,
         key: ValueKey(url),
         filterQuality: FilterQuality.medium,
