@@ -156,7 +156,29 @@ class _GalleryPageState extends State<GalleryPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                     onTap: () {
-                      print('photo');
+                      print('photo $index tapped');
+                      showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: const EdgeInsets.all(16.0),
+                          child: Stack(
+                            children: [
+                              GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Icon(
+                                    Icons.arrow_back_rounded,
+                                    size: 32.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     },
                     child: imageList[index]);
               },
