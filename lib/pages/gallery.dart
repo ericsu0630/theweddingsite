@@ -38,7 +38,7 @@ class _GalleryPageState extends State<GalleryPage> {
 
   Future<void> fetchData() async {
     if (endOfListReached) return;
-    showLoading = true;
+    // showLoading = true;
     setState(() {});
     //create a file reference to the firebase cloud storage folder
     Reference fileRef = storageRef.child("Final photo resized");
