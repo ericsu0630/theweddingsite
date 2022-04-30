@@ -74,8 +74,8 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (i=0; i< 229; i++) {
-      imgUrls.add("TSU-SHIUAN & ANGEL - BELAIR WEDDING (${i}).jpg");
+    for (int i=0; i < 229; i++) {
+      imgUrls.add("assets/photos/TSU-SHIUAN & ANGEL - BELAIR WEDDING (${i}).jpg");
     }
 
     for (String url in imgUrls) {
