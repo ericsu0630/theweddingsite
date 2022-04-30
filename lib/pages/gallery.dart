@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
+
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
 
@@ -71,8 +72,8 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (int i=1; i <= 229; i++) {
-      imgUrls.add("photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING${i}.jpg");
+    for (int i = 1; i <= 229; i++) {
+      imgUrls.add("photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
     }
 
     for (String url in imgUrls) {
@@ -82,25 +83,28 @@ class _GalleryPageState extends State<GalleryPage> {
         filterQuality: FilterQuality.medium,
       );
 
-      //i think this code below fixed the shuffling problem?
-      image.image.resolve(ImageConfiguration()).addListener(
-        ImageStreamListener(
-          (info, call) {
-            print('image height: ${info.image.height}');
-          },
-        ),
-      );
+      print('HEIGHT: ${image.height}');
+      print('WIDTH ${image.width}');
 
-      precacheImage(image.image, context);
+      //i think this code below fixed the shuffling problem?
+      // image.image.resolve(ImageConfiguration()).addListener(
+      //   ImageStreamListener(
+      //     (info, call) {
+      //       print('image height: ${info.image.height}');
+      //     },
+      //   ),
+      // );
+
+      //precacheImage(image.image, context);
       await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
       imageList.add(image);
+      showLoading = false;
       setState(() {});
     }
 
     //update the UI
     if (imgUrls.isNotEmpty) {
       print("total number of images loaded: ${imageList.length.toString()}");
-      showLoading = false;
       initialized = true;
       setState(() {});
     }
