@@ -83,17 +83,15 @@ class _GalleryPageState extends State<GalleryPage> {
         filterQuality: FilterQuality.medium,
       );
 
-      print('HEIGHT: ${image.height}');
-      print('WIDTH ${image.width}');
-
       //i think this code below fixed the shuffling problem?
-      // image.image.resolve(ImageConfiguration()).addListener(
-      //   ImageStreamListener(
-      //     (info, call) {
-      //       print('image height: ${info.image.height}');
-      //     },
-      //   ),
-      // );
+      image.image.resolve(ImageConfiguration()).addListener(
+        ImageStreamListener(
+          (info, call) {
+            print('HEIGHT: ${info.image.height}');
+            print('WIDTH ${info.image.width}');
+          },
+        ),
+      );
 
       //precacheImage(image.image, context);
       await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
