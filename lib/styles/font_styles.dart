@@ -35,7 +35,7 @@ class MyFonts {
     color: Palette.primary,
   );
   static TextStyle buttonText = const TextStyle(
-    fontSize: 24.0,
+    fontSize: 40.0,
     fontFamily: "DancingScript",
     fontWeight: FontWeight.w900,
     color: Colors.white,

@@ -18,7 +18,9 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int selected = 0;
   ScrollController scrollController = ScrollController();
-  List<String> titles = ['Welcome!', 'Menu', 'Places to stay', 'Things to do', 'Covid Safety'];
+  List<String> titles = [
+    'Welcome back!', /*'Menu', 'Places to stay', 'Things to do', 'Covid Safety'*/
+  ];
   _NavBarState(int selected) {
     this.selected = selected;
   }
@@ -44,7 +46,7 @@ class _NavBarState extends State<NavBar> {
         child: ListView.builder(
           controller: scrollController,
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: titles.length,
           itemBuilder: (context, index) {
             return navBarItem(index);
           },
@@ -75,18 +77,18 @@ class _NavBarState extends State<NavBar> {
             case 0:
               goToSelectedPage(HomePage());
               break;
-            case 1:
-              goToSelectedPage(RsvpPage());
-              break;
-            case 2:
-              goToSelectedPage(TipsPage());
-              break;
-            case 3:
-              goToSelectedPage(TodoPage());
-              break;
-            case 4:
-              goToSelectedPage(CovidPage());
-              break;
+            // case 1:
+            //   goToSelectedPage(RsvpPage());
+            //   break;
+            // case 2:
+            //   goToSelectedPage(TipsPage());
+            //   break;
+            // case 3:
+            //   goToSelectedPage(TodoPage());
+            //   break;
+            // case 4:
+            //   goToSelectedPage(CovidPage());
+            //   break;
           }
         }
       },

@@ -135,7 +135,7 @@ class _GalleryPageState extends State<GalleryPage> {
         ),
         centerTitle: true,
         title: AutoSizeText(
-          'Gallery',
+          'This is a photo gallery',
           style: TextStyle(
             fontSize: 32,
             color: Palette.primary,

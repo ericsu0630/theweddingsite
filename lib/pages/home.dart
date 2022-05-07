@@ -82,40 +82,40 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       fit: BoxFit.fitHeight,
                     ),
                   ),
-                  Positioned.fill(
-                    bottom: 10.0,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: FadeTransition(
-                        opacity: _titleAnimation,
-                        child: TextButton(
-                          //RSVP button styling
-                          child: Container(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                AutoSizeText(
-                                  'More',
-                                  style: MyFonts.buttonText,
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: Colors.white,
-                                  size: 24.0,
-                                ),
-                              ],
-                            ),
-                          ),
-                          onPressed: () {
-                            scrollController.animateTo(MediaQuery.of(context).size.height - 64,
-                                //animation settings
-                                duration: Duration(milliseconds: 2000),
-                                curve: Curves.easeOutQuart);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Positioned.fill(
+                  //   bottom: 10.0,
+                  //   child: Align(
+                  //     alignment: Alignment.bottomCenter,
+                  //     child: FadeTransition(
+                  //       opacity: _titleAnimation,
+                  //       child: TextButton(
+                  //         //RSVP button styling
+                  //         child: Container(
+                  //           child: Column(
+                  //             mainAxisSize: MainAxisSize.min,
+                  //             children: [
+                  //               AutoSizeText(
+                  //                 'More',
+                  //                 style: MyFonts.buttonText,
+                  //               ),
+                  //               Icon(
+                  //                 Icons.keyboard_arrow_down_rounded,
+                  //                 color: Colors.white,
+                  //                 size: 24.0,
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         onPressed: () {
+                  //           scrollController.animateTo(MediaQuery.of(context).size.height - 64,
+                  //               //animation settings
+                  //               duration: Duration(milliseconds: 2000),
+                  //               curve: Curves.easeOutQuart);
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Positioned.fill(
                     bottom: 120.0,
                     child: Align(
@@ -134,11 +134,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                              vertical: 8.0,
+                              horizontal: 32.0,
+                              vertical: 16.0,
                             ),
                             child: AutoSizeText(
-                              'Gallery',
+                              'This is a button',
                               style: MyFonts.buttonText,
                             ),
                           ),
