@@ -72,7 +72,7 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (int i = 1; i <= 50; i++) {
+    for (int i = 1; i <= 229; i++) {
       imgUrls.add("low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
     }
 
@@ -196,10 +196,10 @@ class _GalleryPageState extends State<GalleryPage> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Icon(
                                     Icons.arrow_back_rounded,
-                                    size: 32.0,
                                     color: Colors.white,
                                   ),
                                 ),
+                                iconSize: 32.0,
                               ),
                             ],
                           );
