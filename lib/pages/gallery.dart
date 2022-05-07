@@ -5,7 +5,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
 
-
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
 
@@ -17,8 +16,8 @@ class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
   List<Widget> imageList = [];
   List<String> pathToHighResImage = [];
-  bool showLoading = true;
-  bool endOfListReached = false;
+  ValueNotifier<bool> showLoading = ValueNotifier(true);
+  //bool endOfListReached = false;
   bool initialized = false;
   String? pageToken;
   Reference storageRef = FirebaseStorage.instance.ref();
@@ -39,9 +38,9 @@ class _GalleryPageState extends State<GalleryPage> {
   }
 
   Future<void> fetchData() async {
-    if (endOfListReached) return;
-    // showLoading = true;
-    setState(() {});
+    //if (endOfListReached) return;
+    showLoading.value = false;
+    //setState(() {});
     //create a file reference to the firebase cloud storage folder
     //Reference fileRef = storageRef.child("Final photo resized");
 
@@ -52,10 +51,10 @@ class _GalleryPageState extends State<GalleryPage> {
     // pageToken = listResult.nextPageToken;
 
     if (pageToken == null && initialized) {
-      showLoading = false;
-      endOfListReached = true;
+      showLoading.value = false;
+      //endOfListReached = true;
       console.log("end of image list");
-      setState(() {});
+      //setState(() {});
       return;
     }
 
@@ -74,7 +73,7 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (int i = 1; i <= 229; i++) {
+    for (int i = 1; i <= 10; i++) {
       imgUrls.add("low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
     }
 
@@ -99,8 +98,8 @@ class _GalleryPageState extends State<GalleryPage> {
             temp_path = temp_path.substring(3, temp_path.length - 3);
             temp_path = temp_path.replaceFirst("low", "high");
             pathToHighResImage.add(temp_path);
-            showLoading = false;
-            setState(() {});
+            //showLoading.value = false;
+            //setState(() {});
           },
         ),
       );
@@ -114,7 +113,7 @@ class _GalleryPageState extends State<GalleryPage> {
     if (imgUrls.isNotEmpty) {
       print("total number of images loaded: ${imageList.length.toString()}");
       initialized = true;
-      setState(() {});
+      //setState(() {});
     }
   }
 
@@ -173,7 +172,31 @@ class _GalleryPageState extends State<GalleryPage> {
                         insetPadding: const EdgeInsets.all(16.0),
                         child: Stack(
                           children: [
-                            GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: StatefulBuilder(builder: (context, imageState) {
+                                Image highResImage = Image.asset(
+                                  pathToHighResImage[index],
+                                  key: ValueKey(pathToHighResImage[index]),
+                                  filterQuality: FilterQuality.medium,
+                                  fit: BoxFit.fill,
+                                );
+                                Widget aspectRatioHighResImage = Container();
+                                showLoading.value = true;
+                                //setState(() {});
+                                highResImage.image.resolve(ImageConfiguration()).addListener(
+                                  ImageStreamListener(
+                                    (info, call) {
+                                      double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
+                                      aspectRatioHighResImage = AspectRatio(aspectRatio: aspectRatio, child: highResImage);
+                                      showLoading.value = false;
+                                      imageState(() {});
+                                    },
+                                  ),
+                                );
+                                return aspectRatioHighResImage;
+                              }),
+                            ),
                             IconButton(
                               onPressed: () => Navigator.pop(context),
                               icon: Padding(
@@ -193,7 +216,14 @@ class _GalleryPageState extends State<GalleryPage> {
                 );
               },
             ),
-          showLoading ? Center(child: CircularProgressIndicator(color: Palette.primary)) : Container(),
+          ValueListenableBuilder(
+              valueListenable: showLoading,
+              builder: (context, bool showLoading, _) {
+                if (showLoading)
+                  return Center(child: CircularProgressIndicator(color: Palette.primary));
+                else
+                  return Container();
+              }),
         ],
       ),
     );
