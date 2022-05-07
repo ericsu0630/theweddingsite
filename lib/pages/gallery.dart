@@ -16,7 +16,7 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
   List<Widget> imageList = [];
-  List<Image> anotherImageList = [];
+  List<String> pathToHighResImage = [];
   bool showLoading = true;
   bool endOfListReached = false;
   bool initialized = false;
@@ -95,8 +95,10 @@ class _GalleryPageState extends State<GalleryPage> {
             // print(image.key.toString());
             double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
             imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
-            image
-            anotherImageList.add(image);
+            String temp_path = image.key.toString();
+            temp_path = temp_path.substring(3, temp_path.length - 3);
+            temp_path = temp_path.replaceFirst("low", "high");
+            pathToHighResImage.add(temp_path);
             showLoading = false;
             setState(() {});
           },
@@ -164,15 +166,14 @@ class _GalleryPageState extends State<GalleryPage> {
                   child: imageList[index],
                   onTap: () {
                     //todo run a method that downloads full res photo
-                    print(anotherImageList[index].key.toString());
-                    // print('photo ${hashMap[imageList[index].child]} tapped');
+                    print(pathToHighResImage[index]);
                     showDialog(
                       context: context,
                       builder: (_) => Dialog(
                         insetPadding: const EdgeInsets.all(16.0),
                         child: Stack(
                           children: [
-                            GestureDetector(onTap: () => Navigator.pop(context), child: anotherImageList[index]),
+                            GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
                             IconButton(
                               onPressed: () => Navigator.pop(context),
                               icon: Padding(

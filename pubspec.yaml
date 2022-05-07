@@ -24,7 +24,8 @@ flutter:
   assets:
     - assets/images/
     - assets/myfonts/
-    - assets/photos/
+    - assets/low_res_photos/
+    - assets/high_res_photos/
 
   fonts:
     - family: DancingScript
