@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 import 'dart:developer' as console;
 
+
 class GalleryPage extends StatefulWidget {
   const GalleryPage({Key? key}) : super(key: key);
 
@@ -15,6 +16,7 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
   List<Widget> imageList = [];
+  List<Image> anotherImageList = [];
   bool showLoading = true;
   bool endOfListReached = false;
   bool initialized = false;
@@ -73,7 +75,7 @@ class _GalleryPageState extends State<GalleryPage> {
     List<String> imgUrls = List.empty(growable: true);
 
     for (int i = 1; i <= 229; i++) {
-      imgUrls.add("photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
+      imgUrls.add("low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
     }
 
     for (String url in imgUrls) {
@@ -89,8 +91,12 @@ class _GalleryPageState extends State<GalleryPage> {
       image.image.resolve(ImageConfiguration()).addListener(
         ImageStreamListener(
           (info, call) {
+            // print(info.sizeBytes);
+            // print(image.key.toString());
             double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
             imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
+            image
+            anotherImageList.add(image);
             showLoading = false;
             setState(() {});
           },
@@ -158,14 +164,15 @@ class _GalleryPageState extends State<GalleryPage> {
                   child: imageList[index],
                   onTap: () {
                     //todo run a method that downloads full res photo
-                    print('photo $index tapped');
+                    print(anotherImageList[index].key.toString());
+                    // print('photo ${hashMap[imageList[index].child]} tapped');
                     showDialog(
                       context: context,
                       builder: (_) => Dialog(
                         insetPadding: const EdgeInsets.all(16.0),
                         child: Stack(
                           children: [
-                            GestureDetector(onTap: () => Navigator.pop(context), child: imageList[index]),
+                            GestureDetector(onTap: () => Navigator.pop(context), child: anotherImageList[index]),
                             IconButton(
                               onPressed: () => Navigator.pop(context),
                               icon: Padding(
