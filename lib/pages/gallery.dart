@@ -39,7 +39,6 @@ class _GalleryPageState extends State<GalleryPage> {
 
   Future<void> fetchData() async {
     //if (endOfListReached) return;
-    showLoading.value = false;
     //setState(() {});
     //create a file reference to the firebase cloud storage folder
     //Reference fileRef = storageRef.child("Final photo resized");
@@ -98,22 +97,20 @@ class _GalleryPageState extends State<GalleryPage> {
             temp_path = temp_path.substring(3, temp_path.length - 3);
             temp_path = temp_path.replaceFirst("low", "high");
             pathToHighResImage.add(temp_path);
-            //showLoading.value = false;
-            //setState(() {});
+            if (showLoading.value == true) {
+              showLoading.value = false;
+            }
+            setState(() {});
           },
         ),
       );
-
-      //precacheImage(image.image, context);
-      //await Future.delayed(Duration(milliseconds: 100)); //give some time for each image to precache
-
     }
 
     //update the UI
     if (imgUrls.isNotEmpty) {
       print("total number of images loaded: ${imageList.length.toString()}");
       initialized = true;
-      //setState(() {});
+      setState(() {});
     }
   }
 
@@ -166,10 +163,12 @@ class _GalleryPageState extends State<GalleryPage> {
                   onTap: () {
                     //todo run a method that downloads full res photo
                     print(pathToHighResImage[index]);
+                    showLoading.value = true;
                     showDialog(
                       context: context,
                       builder: (_) => Dialog(
                         insetPadding: const EdgeInsets.all(16.0),
+                        backgroundColor: Colors.transparent,
                         child: Stack(
                           children: [
                             GestureDetector(
@@ -181,9 +180,7 @@ class _GalleryPageState extends State<GalleryPage> {
                                   filterQuality: FilterQuality.medium,
                                   fit: BoxFit.fill,
                                 );
-                                Widget aspectRatioHighResImage = Container();
-                                showLoading.value = true;
-                                //setState(() {});
+                                Widget aspectRatioHighResImage = Container(height: 0.0, width: 0.0);
                                 highResImage.image.resolve(ImageConfiguration()).addListener(
                                   ImageStreamListener(
                                     (info, call) {
