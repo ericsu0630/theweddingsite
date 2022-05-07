@@ -72,7 +72,7 @@ class _GalleryPageState extends State<GalleryPage> {
     // Override for local development - remove later
     List<String> imgUrls = List.empty(growable: true);
 
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 50; i++) {
       imgUrls.add("low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg");
     }
 
@@ -169,44 +169,41 @@ class _GalleryPageState extends State<GalleryPage> {
                       builder: (_) => Dialog(
                         insetPadding: const EdgeInsets.all(16.0),
                         backgroundColor: Colors.transparent,
-                        child: Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: () => Navigator.pop(context),
-                              child: StatefulBuilder(builder: (context, imageState) {
-                                Image highResImage = Image.asset(
-                                  pathToHighResImage[index],
-                                  key: ValueKey(pathToHighResImage[index]),
-                                  filterQuality: FilterQuality.medium,
-                                  fit: BoxFit.fill,
-                                );
-                                Widget aspectRatioHighResImage = Container(height: 0.0, width: 0.0);
-                                highResImage.image.resolve(ImageConfiguration()).addListener(
-                                  ImageStreamListener(
-                                    (info, call) {
-                                      double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
-                                      aspectRatioHighResImage = AspectRatio(aspectRatio: aspectRatio, child: highResImage);
-                                      showLoading.value = false;
-                                      imageState(() {});
-                                    },
-                                  ),
-                                );
-                                return aspectRatioHighResImage;
-                              }),
+                        child: StatefulBuilder(builder: (context, imageState) {
+                          Image highResImage = Image.asset(
+                            pathToHighResImage[index],
+                            key: ValueKey(pathToHighResImage[index]),
+                            filterQuality: FilterQuality.medium,
+                            fit: BoxFit.fill,
+                          );
+                          Widget aspectRatioHighResImage = Container(height: 0.0, width: 0.0);
+                          highResImage.image.resolve(ImageConfiguration()).addListener(
+                            ImageStreamListener(
+                              (info, call) {
+                                double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
+                                aspectRatioHighResImage = AspectRatio(aspectRatio: aspectRatio, child: highResImage);
+                                showLoading.value = false;
+                                imageState(() {});
+                              },
                             ),
-                            IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Icon(
-                                  Icons.arrow_back_rounded,
-                                  size: 32.0,
-                                  color: Colors.white,
+                          );
+                          return Stack(
+                            children: [
+                              GestureDetector(onTap: () => Navigator.pop(context), child: aspectRatioHighResImage),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Icon(
+                                    Icons.arrow_back_rounded,
+                                    size: 32.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          );
+                        }),
                       ),
                     );
                   },
@@ -214,13 +211,14 @@ class _GalleryPageState extends State<GalleryPage> {
               },
             ),
           ValueListenableBuilder(
-              valueListenable: showLoading,
-              builder: (context, bool showLoading, _) {
-                if (showLoading)
-                  return Center(child: CircularProgressIndicator(color: Palette.primary));
-                else
-                  return Container();
-              }),
+            valueListenable: showLoading,
+            builder: (context, bool showLoading, _) {
+              if (showLoading)
+                return Center(child: CircularProgressIndicator(color: Palette.primary));
+              else
+                return Container();
+            },
+          ),
         ],
       ),
     );
