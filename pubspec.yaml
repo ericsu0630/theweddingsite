@@ -8,15 +8,15 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
   auto_size_text: ^3.0.0-nullsafety.0
-  google_fonts: ^2.1.0
-  flutter_staggered_grid_view: ^0.6.1
-  firebase_storage: ^10.2.14
   firebase_core: ^1.15.0
   firebase_core_web: ^1.6.2
+  firebase_storage: ^10.2.14
   firebase_storage_web: ^3.2.13
+  flutter:
+    sdk: flutter
+  flutter_staggered_grid_view: ^0.6.1
+  google_fonts: ^2.1.0
 
 flutter:
   uses-material-design: true
@@ -33,3 +33,4 @@ flutter:
         - asset: assets/myfonts/DancingScript.ttf
 dev_dependencies: 
   dependency_validator: ^3.2.0
+  lint: ^1.8.2

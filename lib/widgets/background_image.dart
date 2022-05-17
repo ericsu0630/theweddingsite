@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/styles/opacity.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/opacity.dart';
+
 Widget backgroundImage(BuildContext context) {
-  double container_size = min(MediaQuery.of(context).size.height * 2, 1150);
+  final double containerSize = min(MediaQuery.of(context).size.height * 2, 1150);
   return Container(
     width: MediaQuery.of(context).size.width,
     color: Colors.white,
-    height: container_size,
+    height: containerSize,
     child: Column(
       children: [
         Expanded(
@@ -34,11 +35,11 @@ Widget backgroundImage(BuildContext context) {
 }
 
 Widget backgroundImage1(BuildContext context) {
-  double container_size = MediaQuery.of(context).size.height - 64;
+  final double containerSize = MediaQuery.of(context).size.height - 64;
   return Container(
     width: MediaQuery.of(context).size.width,
     color: Colors.white,
-    height: container_size,
+    height: containerSize,
     child: Column(
       children: [
         Expanded(

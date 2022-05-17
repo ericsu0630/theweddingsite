@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/pages/gallery.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 import 'package:tsu_and_angel/widgets/wedding_party.dart';
-
-import 'gallery.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,8 +22,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _titleAnimationController =
-        AnimationController(duration: const Duration(milliseconds: 1000), value: 0, lowerBound: 0, upperBound: 1, vsync: this);
+    _titleAnimationController = AnimationController(duration: const Duration(milliseconds: 1000), value: 0, vsync: this);
     _titleAnimation = CurvedAnimation(parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
     _titleAnimationController.forward();
   }
@@ -44,25 +43,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget pageBody() {
     return Column(
       children: <Widget>[
-        NavBar(selectedPosition: 0),
+        const NavBar(selectedPosition: 0),
         pageContent(),
       ],
     );
   }
 
   Widget pageContent() {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double ratio = width / height;
-    double pcScreenRatio = 4 / 3;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double ratio = width / height;
+    const double pcScreenRatio = 4 / 3;
 
-    String date_time_string = "Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : 22:00";
-    String venue_string = "Belair Pavilion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357";
-    String program_string =
-        "14:00\nGuest arrival\nCeremony\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n20:00\nDance floor opens\n\n~22:00\nHome time!\n";
-    double container_size = min(MediaQuery.of(context).size.height * 2, 1150);
+    const String dateTimeString = 'Thursday, 14 October 2021\nStart time : 14:00 for 14:30\nEnd time : 22:00';
+    const String venueString = 'Belair Pavilion\nSuid Agter Paarl Road\nPaarl, Cape Town\nWestern Cape\n9357';
+    const String programString =
+        '14:00\nGuest arrival\nCeremony\n\n15:00\nDrinks and Canapés\nPhotos\nLawn games\n\n17:30\nWedding party photos\nReception\nSpeeches\nFirst Dance\n\n20:00\nDance floor opens\n\n~22:00\nHome time!\n';
+    final double containerSize = min(MediaQuery.of(context).size.height * 2, 1150);
 
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height - 64,
       child: Scrollbar(
         controller: scrollController,
@@ -130,7 +129,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32.0),
                             ),
-                            side: BorderSide(color: Colors.white, width: 2.0),
+                            side: const BorderSide(color: Colors.white, width: 2.0),
                           ),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -143,7 +142,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => GalleryPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const GalleryPage()));
                           },
                         ),
                       ),
@@ -154,18 +153,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Stack(
                 children: <Widget>[
                   backgroundImage(context),
-                  Container(
-                    height: container_size,
+                  SizedBox(
+                    height: containerSize,
                     child: Center(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ContentCard(
                             titleText: 'Date / Time',
                             contentList: [
                               AutoSizeText(
-                                date_time_string,
+                                dateTimeString,
                                 style: MyFonts.contentText,
                               ),
                             ],
@@ -175,7 +173,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             contentList: [
                               SelectableText(
                                 //in case someone wants to copy this
-                                venue_string,
+                                venueString,
                                 style: MyFonts.contentText,
                               ),
                             ],
@@ -250,7 +248,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               contentList: [
                                 Expanded(
                                   child: AutoSizeText(
-                                    program_string,
+                                    programString,
                                     style: MyFonts.contentText,
                                   ),
                                 ),

@@ -1,7 +1,8 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 
 class MyGoogleMap extends StatefulWidget {
   @override
@@ -23,13 +24,12 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: MediaQuery.of(context).size.height * 0.3,
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: HtmlElementView(
-            viewType: ''
-                'my_google_'
-                'map'
-                ''));
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: const HtmlElementView(
+        viewType: 'my_google_map',
+      ),
+    );
   }
 }

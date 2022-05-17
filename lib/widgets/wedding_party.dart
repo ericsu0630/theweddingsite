@@ -1,21 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:tsu_and_angel/styles/font_styles.dart';
+
 class WeddingParty extends StatelessWidget {
-  final List<Widget> memberList;
   const WeddingParty({Key? key, required this.memberList}) : super(key: key);
-  static ScrollController scroll_controller = ScrollController();
+  final List<Widget> memberList;
+  static ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     //account for different screen sizes
-    double width = min(MediaQuery.of(context).size.width, 750);
-    double height = MediaQuery.of(context).size.height;
-    double ratio = width / height;
-    double pcScreenRatio = 16 / 9;
-    double tabletScreenRatio = 1;
+    final double width = min(MediaQuery.of(context).size.width, 750);
+    final double height = MediaQuery.of(context).size.height;
+    final double ratio = width / height;
+    const double pcScreenRatio = 16 / 9;
+    const double tabletScreenRatio = 1;
     double marginWidth = 0.1;
     if (ratio > tabletScreenRatio) {
       marginWidth = 0.28;
@@ -29,7 +30,7 @@ class WeddingParty extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0), //space inside the cards
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5),
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       ),
       child: Column(
         children: [
@@ -37,19 +38,19 @@ class WeddingParty extends StatelessWidget {
             'Wedding Party',
             style: MyFonts.contentTitleText,
           ),
-          Container(
+          SizedBox(
             height: 160.0,
             width: width,
             child: Center(
               child: Scrollbar(
                 isAlwaysShown: true,
-                controller: scroll_controller,
+                controller: scrollController,
                 child: ListView(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
+                  controller: scrollController,
                   children: memberList,
-                  controller: scroll_controller,
                 ),
               ),
             ),
@@ -59,7 +60,7 @@ class WeddingParty extends StatelessWidget {
     );
   }
 
-  static member({required String title, required String name, required String imagePath}) {
+  static Widget member({required String title, required String name, required String imagePath}) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Column(

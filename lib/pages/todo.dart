@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 import 'package:tsu_and_angel/widgets/background_image.dart';
 import 'package:tsu_and_angel/widgets/content_card.dart';
 import 'package:tsu_and_angel/widgets/content_card_start.dart';
-import 'package:tsu_and_angel/widgets/google_map.dart';
 import 'package:tsu_and_angel/widgets/navigation_bar.dart';
 
 class TodoPage extends StatefulWidget {
@@ -20,8 +19,7 @@ class _TodoPageState extends State<TodoPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _titleAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), value: 0, lowerBound: 0, upperBound: 1, vsync: this);
+    _titleAnimationController = AnimationController(duration: const Duration(milliseconds: 1000), value: 0, vsync: this);
     _titleAnimation = CurvedAnimation(parent: _titleAnimationController, curve: Curves.fastOutSlowIn);
     _titleAnimationController.forward();
   }
@@ -47,9 +45,7 @@ class _TodoPageState extends State<TodoPage> with TickerProviderStateMixin {
         controller: scrollController,
         child: Column(
           children: <Widget>[
-            NavBar(
-              selectedPosition: 3,
-            ),
+            const NavBar(selectedPosition: 3),
             splashScreen(),
           ],
         ),
@@ -58,72 +54,69 @@ class _TodoPageState extends State<TodoPage> with TickerProviderStateMixin {
   }
 
   String text_1 =
-      "Alpaca loom (feed the Alpacas!!!)\nThe Spice Route \nFairview Wine and Cheese\nPearl Valley\nDrakenstein Lion Park\nAfrikaans Language Monument (Taal monument)\nGroot Drakenstein Prison\nAshia Cheetah Sanctuary";
-  String text_2 = "";
+      'Alpaca loom (feed the Alpacas!!!)\nThe Spice Route \nFairview Wine and Cheese\nPearl Valley\nDrakenstein Lion Park\nAfrikaans Language Monument (Taal monument)\nGroot Drakenstein Prison\nAshia Cheetah Sanctuary';
+  String text_2 = '';
 
   Widget splashScreen() {
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          backgroundImage(context),
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32.0),
-              child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    FadeTransition(
-                      opacity: _titleAnimation,
-                      child: ContentCard(
-                        titleText: 'Immediate surrounding area',
-                        contentList: [
-                          AutoSizeText(
-                            text_1,
-                            style: MyFonts.contentText,
-                          ),
-                        ],
-                      ),
+    return Stack(
+      children: <Widget>[
+        backgroundImage(context),
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32.0),
+            child: Align(
+              child: Column(
+                children: [
+                  FadeTransition(
+                    opacity: _titleAnimation,
+                    child: ContentCard(
+                      titleText: 'Immediate surrounding area',
+                      contentList: [
+                        AutoSizeText(
+                          text_1,
+                          style: MyFonts.contentText,
+                        ),
+                      ],
                     ),
-                    FadeTransition(
-                      opacity: _titleAnimation,
-                      child: ContentCardStart(
-                        titleText: 'Slightly further out',
-                        contentList: [
-                          AutoSizeText(
-                            "Winelands",
-                            style: MyFonts.contentTextSubtitle,
-                          ),
-                          AutoSizeText(
-                            "Franschhoek: check out Franschhoek wine tram, Babylonstoren, Farm Sanctuary SA\nStellenbosch: strawberry picking, R44 market\nConstantia Valley\n",
-                            style: MyFonts.contentText,
-                          ),
-                          AutoSizeText(
-                            "Cape Town CBD",
-                            style: MyFonts.contentTextSubtitle,
-                          ),
-                          AutoSizeText(
-                            "V and A Waterfront (incl Robben Island, Ferris wheel etc)\nCamps Bay\nHout Bay\nSignal Hill\nCity Sightseeing Bus\n",
-                            style: MyFonts.contentText,
-                          ),
-                          AutoSizeText(
-                            "Alcohol!",
-                            style: MyFonts.contentTextSubtitle,
-                          ),
-                          AutoSizeText(
-                            "Gin - Wilderer, Classic Cats, The Botanical Bar, The Gin Bar\nBeer - Cape Brewing Company, Wild Clover Farm, Stellenbaru Microbrewery, Craft Wheat and Hops, Tuk Tuk microbrewery (Franschhoek), Devil’s Peak\n",
-                            style: MyFonts.contentText,
-                          ),
-                        ],
-                      ),
+                  ),
+                  FadeTransition(
+                    opacity: _titleAnimation,
+                    child: ContentCardStart(
+                      titleText: 'Slightly further out',
+                      contentList: [
+                        AutoSizeText(
+                          'Winelands',
+                          style: MyFonts.contentTextSubtitle,
+                        ),
+                        AutoSizeText(
+                          'Franschhoek: check out Franschhoek wine tram, Babylonstoren, Farm Sanctuary SA\nStellenbosch: strawberry picking, R44 market\nConstantia Valley\n',
+                          style: MyFonts.contentText,
+                        ),
+                        AutoSizeText(
+                          'Cape Town CBD',
+                          style: MyFonts.contentTextSubtitle,
+                        ),
+                        AutoSizeText(
+                          'V and A Waterfront (incl Robben Island, Ferris wheel etc)\nCamps Bay\nHout Bay\nSignal Hill\nCity Sightseeing Bus\n',
+                          style: MyFonts.contentText,
+                        ),
+                        AutoSizeText(
+                          'Alcohol!',
+                          style: MyFonts.contentTextSubtitle,
+                        ),
+                        AutoSizeText(
+                          'Gin - Wilderer, Classic Cats, The Botanical Bar, The Gin Bar\nBeer - Cape Brewing Company, Wild Clover Farm, Stellenbaru Microbrewery, Craft Wheat and Hops, Tuk Tuk microbrewery (Franschhoek), Devil’s Peak\n',
+                          style: MyFonts.contentText,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

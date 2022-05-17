@@ -1,18 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/styles/colors.dart';
 import 'package:tsu_and_angel/pages/home.dart';
-import 'package:tsu_and_angel/pages/todo.dart';
-import 'package:tsu_and_angel/pages/covid.dart';
-import 'package:tsu_and_angel/pages/rsvp.dart';
-import 'package:tsu_and_angel/pages/tips.dart';
+import 'package:tsu_and_angel/styles/colors.dart';
 
 class NavBar extends StatefulWidget {
+  const NavBar({Key? key, required this.selectedPosition}) : super(key: key);
   final int selectedPosition;
 
-  const NavBar({Key? key, required this.selectedPosition}) : super(key: key);
   @override
-  _NavBarState createState() => _NavBarState(selectedPosition);
+  _NavBarState createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
@@ -21,19 +17,17 @@ class _NavBarState extends State<NavBar> {
   List<String> titles = [
     'Welcome back!', /*'Menu', 'Places to stay', 'Things to do', 'Covid Safety'*/
   ];
-  _NavBarState(int selected) {
-    this.selected = selected;
-  }
 
   @override
   void initState() {
+    selected = widget.selectedPosition;
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) => scrollToSelectedPosition());
   }
 
   void scrollToSelectedPosition() {
     //scroll to the end of the navbar if 4th or 5th item is selected
-    if (selected >= 3) scrollController.animateTo(200, duration: Duration(milliseconds: 1), curve: Curves.linear);
+    if (selected >= 3) scrollController.animateTo(200, duration: const Duration(milliseconds: 1), curve: Curves.linear);
   }
 
   @override
@@ -62,7 +56,7 @@ class _NavBarState extends State<NavBar> {
       PageRouteBuilder(
         pageBuilder: (_, __, ___) => selectedPage,
         transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-        transitionDuration: Duration(milliseconds: 100),
+        transitionDuration: const Duration(milliseconds: 100),
       ),
       (route) => false,
     );

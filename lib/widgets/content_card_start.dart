@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:tsu_and_angel/styles/font_styles.dart';
 
 class ContentCardStart extends StatelessWidget {
+  const ContentCardStart({Key? key, required this.contentList, required this.titleText}) : super(key: key);
   final List<Widget> contentList;
   final String titleText;
-  const ContentCardStart({Key? key, required this.contentList, required this.titleText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //account for different screen sizes
-    double width = min(MediaQuery.of(context).size.width, 750);
-    double height = MediaQuery.of(context).size.height;
-    double ratio = MediaQuery.of(context).size.width / height;
-    double pcScreenRatio = 16 / 9;
-    double tabletScreenRatio = 4 / 3;
+    final double width = min(MediaQuery.of(context).size.width, 750);
+    final double height = MediaQuery.of(context).size.height;
+    final double ratio = MediaQuery.of(context).size.width / height;
+    const double pcScreenRatio = 16 / 9;
+    const double tabletScreenRatio = 4 / 3;
     double marginWidth = 0.02;
     if (ratio > tabletScreenRatio) {
       marginWidth = 0.29;
@@ -23,7 +23,7 @@ class ContentCardStart extends StatelessWidget {
       marginWidth = 0.33;
     }
 
-    contentList.insert(0, SizedBox(height: 16.0));
+    contentList.insert(0, const SizedBox(height: 16.0));
     contentList.insert(0, Text(titleText, style: MyFonts.contentTitleText));
 
     return Container(
@@ -35,7 +35,7 @@ class ContentCardStart extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0), //space inside the cards
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5), //opacity of the card
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
