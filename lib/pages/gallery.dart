@@ -26,7 +26,7 @@ class _GalleryPageState extends State<GalleryPage> {
     final List<String> imgUrls = List.empty(growable: true);
 
     for (int i = 1; i <= 229; i++) {
-      imgUrls.add('assets/low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg');
+      imgUrls.add('assets/low_res_photos/$i.jpg');
     }
 
     for (final String url in imgUrls) {
