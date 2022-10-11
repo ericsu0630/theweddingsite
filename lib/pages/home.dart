@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       height: MediaQuery.of(context).size.height - 64,
       child: Scrollbar(
         controller: scrollController,
-        isAlwaysShown: true,
+        thumbVisibility: true,
         child: SingleChildScrollView(
           controller: scrollController,
           child: Column(
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: OutlinedButton(
                           //Gallery button styling
                           style: OutlinedButton.styleFrom(
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             backgroundColor: Colors.black26.withOpacity(0.2),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32.0),
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               vertical: 16.0,
                             ),
                             child: AutoSizeText(
-                              'This is a button',
+                              'View Gallery',
                               style: MyFonts.buttonText,
                             ),
                           ),

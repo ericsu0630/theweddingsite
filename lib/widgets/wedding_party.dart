@@ -43,7 +43,7 @@ class WeddingParty extends StatelessWidget {
             width: width,
             child: Center(
               child: Scrollbar(
-                isAlwaysShown: true,
+                thumbVisibility: true,
                 controller: scrollController,
                 child: ListView(
                   physics: const BouncingScrollPhysics(),

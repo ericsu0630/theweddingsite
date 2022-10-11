@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:tsu_and_angel/pages/home.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
 class NavBar extends StatefulWidget {
@@ -14,15 +13,13 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int selected = 0;
   ScrollController scrollController = ScrollController();
-  List<String> titles = [
-    'Welcome back!', /*'Menu', 'Places to stay', 'Things to do', 'Covid Safety'*/
-  ];
+  List<String> titles = ['Welcome back!'];
 
   @override
   void initState() {
     selected = widget.selectedPosition;
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) => scrollToSelectedPosition());
+    WidgetsBinding.instance.addPostFrameCallback((_) => scrollToSelectedPosition());
   }
 
   void scrollToSelectedPosition() {
@@ -64,28 +61,28 @@ class _NavBarState extends State<NavBar> {
 
   Widget navBarItem(int position) {
     return GestureDetector(
-      onTap: () {
-        if (selected != position) {
-          selected = position;
-          switch (position) {
-            case 0:
-              goToSelectedPage(HomePage());
-              break;
-            // case 1:
-            //   goToSelectedPage(RsvpPage());
-            //   break;
-            // case 2:
-            //   goToSelectedPage(TipsPage());
-            //   break;
-            // case 3:
-            //   goToSelectedPage(TodoPage());
-            //   break;
-            // case 4:
-            //   goToSelectedPage(CovidPage());
-            //   break;
-          }
-        }
-      },
+      // onTap: () {
+      //   if (selected != position) {
+      //     selected = position;
+      //     switch (position) {
+      //       case 0:
+      //         goToSelectedPage(HomePage());
+      //         break;
+      //       case 1:
+      //         goToSelectedPage(RsvpPage());
+      //         break;
+      //       case 2:
+      //         goToSelectedPage(TipsPage());
+      //         break;
+      //       case 3:
+      //         goToSelectedPage(TodoPage());
+      //         break;
+      //       case 4:
+      //         goToSelectedPage(CovidPage());
+      //         break;
+      //     }
+      //   }
+      // },
       child: Container(
         height: 40.0,
         decoration: BoxDecoration(
