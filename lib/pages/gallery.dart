@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -64,30 +63,42 @@ class _GalleryPageState extends State<GalleryPage> {
         crossAxisSpacing: 8,
         itemBuilder: (context, index) {
           return GestureDetector(
-            child: FadeInImage.memoryNetwork(
-              fadeOutDuration: const Duration(milliseconds: 250),
-              fadeInDuration: const Duration(milliseconds: 250),
-              fadeInCurve: Curves.easeOutCubic,
-              placeholder: kTransparentImage,
-              image: lowResImgUrls[index].toString(),
+            child: Image.asset(
+              lowResImgUrls[index].toString(),
               fit: BoxFit.fill,
-              imageErrorBuilder: (context, error, stackTrace) => Container(),
-              placeholderErrorBuilder: (context, error, stackTrace) => Container(),
+              errorBuilder: (context, error, stackTrace) => Container(),
             ),
             onTap: () {
               showDialog(
                 context: context,
                 builder: (context) => Dialog(
+                  backgroundColor: Colors.transparent,
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: InteractiveViewer(
-                      minScale: 1.0, //min zoom
-                      maxScale: 5.0, //max zoom
-                      child: Image.asset(
-                        highResImgUrls[index].toString(),
-                        fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) => Container(),
-                      ),
+                    child: StatefulBuilder(
+                      builder: (context, dialogState) {
+                        bool showImage = false;
+                        final Image highResImage = Image.asset(
+                          highResImgUrls[index].toString(),
+                          fit: BoxFit.fill,
+                          filterQuality: FilterQuality.high,
+                          errorBuilder: (context, error, stackTrace) => Container(),
+                        );
+                        highResImage.image.resolve(ImageConfiguration.empty).addListener(
+                          ImageStreamListener(
+                            (info, call) {
+                              dialogState(() => showImage = true);
+                            },
+                          ),
+                        );
+                        return showImage
+                            ? InteractiveViewer(
+                                minScale: 1.0, //min zoom
+                                maxScale: 5.0, //max zoom
+                                child: highResImage,
+                              )
+                            : Center(child: SizedBox(width: 32.0, height: 32.0, child: CircularProgressIndicator(color: Palette.primary)));
+                      },
                     ),
                   ),
                 ),
