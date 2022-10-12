@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:tsu_and_angel/photo_list.dart';
 import 'package:tsu_and_angel/styles/colors.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -13,7 +14,6 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   ScrollController scrollController = ScrollController();
   List<Widget> imageList = [];
-  List<String> pathToHighResImage = [];
   ValueNotifier<bool> showLoading = ValueNotifier(true);
 
   @override
@@ -24,15 +24,15 @@ class _GalleryPageState extends State<GalleryPage> {
 
   Future<void> fetchData() async {
     final List<String> imgUrls = List.empty(growable: true);
-
-    for (int i = 1; i <= 229; i++) {
-      imgUrls.add('assets/low_res_photos/TSUSHIUAN_ANGEL_BELAIR_WEDDING_$i.jpg');
+    for (int i = 0; i < photoList.length; i++) {
+      imgUrls.add('assets/low_res_photos/${photoList[i]}.jpg');
     }
 
     for (final String url in imgUrls) {
       final Image image = Image.asset(
         url,
         key: ValueKey(url),
+        filterQuality: FilterQuality.high,
         fit: BoxFit.fill,
       );
 
@@ -41,10 +41,6 @@ class _GalleryPageState extends State<GalleryPage> {
           (info, call) {
             final double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
             imageList.add(AspectRatio(aspectRatio: aspectRatio, child: image));
-            String tempPath = image.key.toString();
-            tempPath = tempPath.substring(3, tempPath.length - 3);
-            tempPath = tempPath.replaceFirst('low', 'high');
-            pathToHighResImage.add(tempPath);
             if (showLoading.value == true) {
               showLoading.value = false;
             }
@@ -102,49 +98,26 @@ class _GalleryPageState extends State<GalleryPage> {
                 return GestureDetector(
                   child: imageList[index],
                   onTap: () {
-                    showLoading.value = true;
                     showDialog(
                       context: context,
                       builder: (_) => Dialog(
                         insetPadding: const EdgeInsets.all(16.0),
                         backgroundColor: Colors.transparent,
-                        child: StatefulBuilder(
-                          builder: (context, imageState) {
-                            final Image highResImage = Image.asset(
-                              pathToHighResImage[index],
-                              key: ValueKey(pathToHighResImage[index]),
-                              filterQuality: FilterQuality.medium,
-                              fit: BoxFit.fill,
-                            );
-                            Widget aspectRatioHighResImage = const SizedBox();
-                            highResImage.image.resolve(ImageConfiguration.empty).addListener(
-                              ImageStreamListener(
-                                (info, call) {
-                                  final double aspectRatio = info.image.width.toDouble() / info.image.height.toDouble();
-                                  aspectRatioHighResImage = AspectRatio(aspectRatio: aspectRatio, child: highResImage);
-                                  showLoading.value = false;
-                                  imageState(() {});
-                                },
+                        child: Stack(
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: InteractiveViewer(minScale: 1.0, maxScale: 2.0, child: imageList[index]),
+                            ),
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: const Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Icon(Icons.arrow_back_rounded, color: Colors.white),
                               ),
-                            );
-                            return Stack(
-                              children: [
-                                GestureDetector(
-                                  onTap: () => Navigator.pop(context),
-                                  child: InteractiveViewer(minScale: 1.0, maxScale: 4.0, child: aspectRatioHighResImage),
-                                ),
-                                if (!showLoading.value)
-                                  IconButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    icon: const Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Icon(Icons.arrow_back_rounded, color: Colors.white),
-                                    ),
-                                    iconSize: 32.0,
-                                  ),
-                              ],
-                            );
-                          },
+                              iconSize: 32.0,
+                            ),
+                          ],
                         ),
                       ),
                     );
