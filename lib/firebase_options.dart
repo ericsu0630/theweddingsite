@@ -43,7 +43,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCkfO1xxFXdkz1gCgnA-aMJz53zImBdvGs',
+    apiKey: '<some-api-key>',
     appId: '1:472244709260:web:034f510de08679296898a9',
     messagingSenderId: '472244709260',
     projectId: 'the-wedding-site-24367',
